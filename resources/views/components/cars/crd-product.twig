@@ -1,0 +1,12 @@
+<li {{ fn('wc_product_class', 'crd crd--product ' ~ additional_class, post) }}>
+    <div class="crd__picture crd__picture--square">
+        <a href="{{ product.link }}">{% do action('woocommerce_before_shop_loop_item_title') %}</a>
+    </div>
+    <div class="crd__content" href="{{ product.link }}">
+        <div class="crd__inner">
+            {% do action('woocommerce_shop_loop_item_title') %}
+            {% do action('woocommerce_after_shop_loop_item_title') %}
+        </div>
+    </div>
+    <div class="crd__footer">{{ fn('woocommerce_template_loop_add_to_cart') }}</div>
+</li>
