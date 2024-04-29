@@ -43,7 +43,7 @@
 		border-radius: 0.8rem;
 
 		&[data-count] {
-			background-color: $color-red;
+			background-color: $highlight1;
 		}
 
 		&[data-count="0"] {

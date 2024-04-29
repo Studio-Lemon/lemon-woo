@@ -18,7 +18,9 @@ add_filter(
 
 add_filter('timber/context', function ($context) {
    $context['woocommerce'] = [
-      'cart'       => woo_cart(),
+      'cart'       => [
+         'count' => woo_cart(),
+      ],
       'login_page' => get_permalink(wc_get_page_id('myaccount')),
    ];
    return $context;

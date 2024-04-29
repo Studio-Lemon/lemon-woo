@@ -1,6 +1,8 @@
 {% set icon = 'close' %}
-{% set message = __('Login', 'wp-lemon-child') %}
-
+{% set message = __('Login', 'woo-lemon') %}
+<pre>
+    {{ dump(woocommerce) }}
+</pre>
 {% if user %}
     {% set icon = 'checkmark' %}
     {% set message = user.meta('first_name') %}
@@ -32,7 +34,7 @@
                 data-bs-toggle="dropdown"
                 href="#"
                 role="button"
-                data-count="{{ woocommerce.cart_count }}"
+                data-count="{{ woocommerce.cart.count }}"
                 aria-haspopup="true"
                 id="js-cart-link"
                 aria-expanded="false">
