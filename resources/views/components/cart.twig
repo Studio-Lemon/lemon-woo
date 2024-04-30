@@ -1,8 +1,5 @@
 {% set icon = 'close' %}
 {% set message = __('Login', 'woo-lemon') %}
-<pre>
-    {{ dump(woocommerce) }}
-</pre>
 {% if user %}
     {% set icon = 'checkmark' %}
     {% set message = user.meta('first_name') %}
