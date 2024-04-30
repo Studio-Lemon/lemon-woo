@@ -2,3 +2,18 @@
    width: 100%;
    clear: both;
 }
+
+.woocommerce .button.alt {
+	background-color: $highlight1 !important;
+}
+
+.variations_button{
+   gap: 10px;
+   display: flex;
+}
+
+.price {
+   display: block;
+   margin-bottom: 1rem;
+}
+
