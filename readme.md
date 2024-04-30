@@ -1,4 +1,4 @@
-# Woo Lemon
+# Lemon 💛 WooCommerce
 
 
 ## Setup

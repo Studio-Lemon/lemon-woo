@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Plugin Name:     Woo Lemon
+ * Plugin Name:     wp-lemon x WooCommerce
  * Plugin URI:      https://wp-lemon.nl
- * Description:     Additional functionality for WooCommerce
+ * Description:     Additional functionality for WooCommerce to wp-lemon
  * Author:          Erik van der Bas
  * Author URI:      https://wp-lemon.nl
  * Text Domain:     woo-lemon
  * Domain Path:     /languages
  * Version:         0.1.0
  *
- * @package         Woo_Lemon
+ * @package         lemon-woo
  */
 
 namespace WP_Lemon\Woocommerce;

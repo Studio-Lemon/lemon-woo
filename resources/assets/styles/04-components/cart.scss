@@ -8,6 +8,20 @@
 	}
 }
 
+.navbar {
+	&__right {
+		display: flex;
+		flex-direction: row;
+		align-self: normal;
+	}
+
+	.dropdown {
+		display: flex;
+		height: 100%;
+	}
+}
+
+
 .offcanvas .btn-close {
 	background: none;
 	opacity: 1;

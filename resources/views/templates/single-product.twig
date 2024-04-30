@@ -1,0 +1,12 @@
+{% extends 'layouts/app.twig' %}
+{% import 'macros/socials.twig' as socials %}
+{% block content %}
+    {{ timber_set_product(post) }}
+    <article class="entry">
+        {% do action('woocommerce_before_main_content') %}
+        {{ fn('wc_get_template_part', 'content', 'single-product') }}
+        {% do action('woocommerce_after_main_content') %}
+        {% do action('wp-lemon/action/entry/content/after') %}
+        {% include 'partials/entry-footer.twig' %}
+    </article>
+{% endblock %}
