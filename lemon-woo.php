@@ -6,7 +6,7 @@
  * Description:     Additional functionality for WooCommerce to wp-lemon
  * Author:          Erik van der Bas
  * Author URI:      https://wp-lemon.nl
- * Text Domain:     woo-lemon
+ * Text Domain:     lemon-woo
  * Domain Path:     /languages
  * Version:         0.1.0
  *
