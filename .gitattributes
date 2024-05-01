@@ -41,3 +41,5 @@ node_modules export-ignore
 *.sql export-ignore
 *.tar.gz export-ignore
 *.zip export-ignore
+.stylelintrc.json export-ignore
+.prettierrc export-ignore
