@@ -8,7 +8,7 @@
  * Author URI:      https://wp-lemon.nl
  * Text Domain:     lemon-woo
  * Domain Path:     /languages
- * Version:         0.0.6
+ * Version:         0.0.7
  *
  * @package         lemon-woo
  */
