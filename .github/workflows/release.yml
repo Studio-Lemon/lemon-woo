@@ -21,7 +21,10 @@ jobs:
     - name: Create zip archive
       run: |
         git archive --format=zip HEAD -o lemon-woo.zip
-        echo "::set-output name=zip_path::lemon-woo.zip"
+        mkdir lemon-woo
+        unzip lemon-woo.zip -d lemon-woo
+        rm lemon-woo.zip
+        zip -r lemon-woo.zip lemon-woo
     - name: Release
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
