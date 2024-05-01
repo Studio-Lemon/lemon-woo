@@ -45,3 +45,4 @@ node_modules export-ignore
 .prettierrc export-ignore
 .gitattributes export-ignore
 webpack.config.js export-ignore
+resources/assets export-ignore
