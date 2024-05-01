@@ -1,6 +1,0 @@
-{
-    "extends": ["stylelint-basebuilder"],
-    "customSyntax": "postcss-scss",
-    "no-irregular-whitespace": "true",
-    "stylistic/declaration-block-semicolon-space-before": "never"
-}
