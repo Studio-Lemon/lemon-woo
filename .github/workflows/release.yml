@@ -1,0 +1,27 @@
+name: Release
+
+on:
+    workflow_dispatch:
+    release:
+        types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            plugin-update-checker
+            resources
+            src
+            woocommerce
+            lemon-woo.php
+            readme.md
+            readme.txt
+            
+            
