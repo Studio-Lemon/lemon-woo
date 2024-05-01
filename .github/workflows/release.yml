@@ -6,7 +6,7 @@ on:
         types: [published]
 
 jobs:
-  build:
+  create_zip:
     name: Build release zip
     runs-on: ubuntu-latest
     steps:
@@ -19,6 +19,14 @@ jobs:
 #        npm install
 #        npm run build
 
-    - name: Generate zip
-      uses: 10up/action-wordpress-plugin-build-zip@stable
-      
+# create a zip archive using .distignore
+    - name: Create zip archive
+      run: |
+        git archive --format=zip HEAD -o lemon-woo.zip -- $(git diff --name-only HEAD^)
+        echo "::set-output name=zip_path::lemon-woo.zip"
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          ${{ steps.create_zip.outputs.zip_path }}
