@@ -4,7 +4,7 @@
 }
 
 .woocommerce .button.alt {
-	background-color: $highlight1 !important;
+	background-color: var(--lemon-woo-button-color, var(--main-color)) !important;
 }
 
 .variations_button{

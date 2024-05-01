@@ -13,17 +13,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-#    - name: Build plugin # Remove or modify this step as needed
-#      run: |
-#        composer install --no-dev
-#        npm install
-#        npm run build
+    - name: Build plugin # Remove or modify this step as needed
+      run: |
+        npm install
+        npm run build
     - name: Create zip archive
       run: |
         git archive --format=zip HEAD -o lemon-woo.zip
         mkdir lemon-woo
         unzip lemon-woo.zip -d lemon-woo
         rm lemon-woo.zip
+        cp -r dist lemon-woo
         zip -r lemon-woo.zip lemon-woo
     - name: Release
       uses: softprops/action-gh-release@v2
