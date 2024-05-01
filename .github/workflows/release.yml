@@ -20,7 +20,7 @@ jobs:
 #        npm run build
     - name: Create zip archive
       run: |
-        git archive --format=zip HEAD -o lemon-woo.zip -- $(git diff --name-only HEAD^)
+        git archive --format=zip HEAD -o lemon-woo.zip HEAD
         echo "::set-output name=zip_path::lemon-woo.zip"
     - name: Release
       uses: softprops/action-gh-release@v2
