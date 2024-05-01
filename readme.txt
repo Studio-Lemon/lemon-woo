@@ -1,4 +1,4 @@
-=== Woo Lemon ===
+=== Lemon x Woo ===
 Donate link: https://wplemon.nl/
 Tags: WooCommerce, wp-lemon
 Requires at least: 6.5
