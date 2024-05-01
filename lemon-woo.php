@@ -8,7 +8,7 @@
  * Author URI:      https://wp-lemon.nl
  * Text Domain:     lemon-woo
  * Domain Path:     /languages
- * Version:         0.1.0
+ * Version:         0.0.6
  *
  * @package         lemon-woo
  */
@@ -35,7 +35,7 @@ $updateChecker = PucFactory::buildUpdateChecker(
 );
 
 $updateChecker->setBranch('main');
-
+$updateChecker->getVcsApi()->enableReleaseAssets();
 $updateChecker->addFilter('first_check_time', function ($unusedTimestamp) {
    //Always check for updates 1 hour after the first activation.
    return time() + 3600;
