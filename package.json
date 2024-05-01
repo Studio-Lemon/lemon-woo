@@ -1,25 +1,25 @@
 {
-  "name": "lemon-woo",
-  "version": "0.1.0",
-  "main": "Gruntfile.js",
-  "author": "YOUR NAME HERE",
-  "scripts": {
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production"
-  },
-  "devDependencies": {
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4"
-  },
-  "dependencies": {
-    "bootstrap": "^5.3.3",
-    "@afshinhaghighat/prettier-plugin-twig-melody": "^2.0.2",
-    "css-loader": "^7.1.1",
-    "mini-css-extract-plugin": "^2.9.0",
-    "prettier": "^3.2.5",
-    "sass": "^1.76.0",
-    "sass-loader": "^14.2.1",
-    "stylelint": "^16.3",
-    "stylelint-basebuilder": "^3.0"
-  }
+    "name": "lemon-woo",
+    "version": "0.2.0",
+    "main": "Gruntfile.js",
+    "author": "YOUR NAME HERE",
+    "scripts": {
+        "dev": "webpack --mode development",
+        "build": "webpack --mode production"
+    },
+    "devDependencies": {
+        "webpack": "^5.91.0",
+        "webpack-cli": "^5.1.4"
+    },
+    "dependencies": {
+        "bootstrap": "^5.3.3",
+        "@afshinhaghighat/prettier-plugin-twig-melody": "^2.0.2",
+        "css-loader": "^7.1.1",
+        "mini-css-extract-plugin": "^2.9.0",
+        "prettier": "^3.2.5",
+        "sass": "^1.76.0",
+        "sass-loader": "^14.2.1",
+        "stylelint": "^16.3",
+        "stylelint-basebuilder": "^3.0"
+    }
 }
