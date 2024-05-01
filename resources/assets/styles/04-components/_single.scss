@@ -1,19 +1,21 @@
 .related {
-   width: 100%;
-   clear: both;
+	width: 100%;
+	clear: both;
 }
 
-.woocommerce .button.alt {
+.woocommerce .button.alt,
+.wc-block-cart__submit-button,
+.wc-block-components-checkout-place-order-button {
+	color: white;
 	background-color: var(--lemon-woo-button-color, var(--main-color)) !important;
 }
 
-.variations_button{
-   gap: 10px;
-   display: flex;
+.variations_button {
+	display: flex;
+	gap: 10px;
 }
 
 .price {
-   display: block;
-   margin-bottom: 1rem;
+	display: block;
+	margin-bottom: 1rem;
 }
-

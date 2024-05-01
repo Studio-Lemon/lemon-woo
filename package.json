@@ -13,9 +13,13 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "@afshinhaghighat/prettier-plugin-twig-melody": "^2.0.2",
     "css-loader": "^7.1.1",
     "mini-css-extract-plugin": "^2.9.0",
+    "prettier": "^3.2.5",
     "sass": "^1.76.0",
-    "sass-loader": "^14.2.1"
+    "sass-loader": "^14.2.1",
+    "stylelint": "^16.3",
+    "stylelint-basebuilder": "^3.0"
   }
 }

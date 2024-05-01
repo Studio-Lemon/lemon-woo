@@ -23,8 +23,8 @@ class Plugin
 
    public static function add_assets()
    {
-      wp_enqueue_script('lemon-woo-js', Plugin::get_uri() . '/dist/main.js', null, true, self::VERSION);
-      wp_enqueue_style('lemon-woo-css', Plugin::get_uri() . '/app.css', null, true, self::VERSION);
+      wp_enqueue_script('lemon-woo-js', Plugin::get_uri() . '/dist/main.js', null, self::VERSION);
+      wp_enqueue_style('lemon-woo-css', Plugin::get_uri() . '/dist/app.css', null, self::VERSION);
    }
 
    public static function get_path(): string
