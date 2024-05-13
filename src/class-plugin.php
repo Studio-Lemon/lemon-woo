@@ -4,8 +4,6 @@ namespace WP_Lemon\Woocommerce;
 
 class Plugin
 {
-   const VERSION = '0.1.0';
-
    const TEXT_DOMAIN = 'lemon-woo';
 
    const PLUGIN_NAME = 'Lemon x Woocommerce';
@@ -23,8 +21,8 @@ class Plugin
 
    public static function add_assets()
    {
-      wp_enqueue_script('lemon-woo-js', Plugin::get_uri() . '/dist/main.js', null, self::VERSION);
-      wp_enqueue_style('lemon-woo-css', Plugin::get_uri() . '/dist/app.css', null, self::VERSION);
+      wp_enqueue_script('lemon-woo-js', Plugin::get_uri() . '/dist/main.js', null, LEMON_WOO_VERSION);
+      wp_enqueue_style('lemon-woo-css', Plugin::get_uri() . '/dist/app.css', null, LEMON_WOO_VERSION);
    }
 
    public static function get_path(): string
