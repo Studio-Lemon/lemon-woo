@@ -1,0 +1,6 @@
+<span class="header-cart__iconholder">
+    <i class="wp-lemon-icon-cart large" aria-hidden="true"></i>
+    {% include 'components/cart-count.twig' with {
+        count: woocommerce.cart.count
+    } %}
+</span>

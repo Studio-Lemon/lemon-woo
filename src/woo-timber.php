@@ -2,6 +2,8 @@
 
 namespace WP_Lemon\Woocommerce;
 
+use Timber\Timber;
+
 add_filter(
    'timber/locations',
    function ($paths) {
@@ -68,10 +70,11 @@ function add_to_cart_fragment($fragments)
 
    $count = $woocommerce->cart->cart_contents_count ?? 0;
 
-   $fragments['.count-cart'] = '<span class="count-cart">' . $count . '</span>';
+   $fragments['.js-cart-count'] = Timber::compile('components/cart-count.twig', ['count' => $count]);
    return $fragments;
 }
 add_filter('woocommerce_add_to_cart_fragments', __NAMESPACE__ . '\\add_to_cart_fragment');
+
 
 function woo_cart(): false | int
 {

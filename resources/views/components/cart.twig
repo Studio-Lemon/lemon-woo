@@ -22,7 +22,7 @@
     {% if fn('is_cart') or fn('is_checkout') %}
         <li class="nav-item">
             <a class="nav-link" href="{{ fn('wc_get_cart_url') }}" id="js-cart-link">
-                {% include 'components/cart-counter.twig' %}
+                {% include 'components/cart-icon.twig' %}
             </a>
         </li>
     {% else %}
@@ -31,11 +31,10 @@
                 data-bs-toggle="dropdown"
                 href="#"
                 role="button"
-                data-count="{{ woocommerce.cart.count }}"
                 aria-haspopup="true"
                 id="js-cart-link"
                 aria-expanded="false">
-                {% include 'components/cart-counter.twig' %}
+                {% include 'components/cart-icon.twig' %}
             </a>
             <div class="dropdown-menu">
                 <div class="lemon-cart">{{ fn('the_widget', 'WC_Widget_Cart') }}</div>
