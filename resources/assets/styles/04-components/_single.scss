@@ -23,3 +23,33 @@
 .woocommerce-tabs ul.tabs {
 	font-size: 1rem !important;
 }
+
+
+
+.woocommerce .products ul,
+.woocommerce ul.products {
+	margin-right: calc(var(--bs-gutter-x) * -0.5) !important;
+	margin-left: calc(var(--bs-gutter-x) * -0.5) !important;
+}
+
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product {
+	height: auto;
+}
+
+form.cart {
+	display: flex;
+	gap: 15px;
+
+	&::before {
+		display: none !important;
+	}
+
+	.quantity {
+		margin-right: 0 !important;
+	}
+
+	.single_add_to_cart_button {
+		height: auto;
+	}
+}
