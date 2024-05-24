@@ -1,6 +1,6 @@
 <?php
 
-namespace WP_Lemon\Woocommerce;
+namespace WP_Lemon\Plugin\Lemon_Woo;
 
 class Plugin
 {

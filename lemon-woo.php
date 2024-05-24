@@ -13,7 +13,7 @@
  * @package         lemon-woo
  */
 
-namespace WP_Lemon\Woocommerce;
+namespace WP_Lemon\Plugin\Lemon_Woo;
 
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
