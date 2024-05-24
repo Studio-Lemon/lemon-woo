@@ -8,7 +8,7 @@
  * Author URI:      https://wp-lemon.nl
  * Text Domain:     lemon-woo
  * Domain Path:     /languages
- * Version:         0.3.0
+ * Version:         1.0.0
  *
  * @package         lemon-woo
  */
@@ -17,7 +17,7 @@ namespace WP_Lemon\Woocommerce;
 
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
-define('LEMON_WOO_VERSION', '0.3.0');
+define('LEMON_WOO_VERSION', '1.0.0');
 
 require 'plugin-update-checker/plugin-update-checker.php';
 
