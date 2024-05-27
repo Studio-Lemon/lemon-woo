@@ -1,0 +1,15 @@
+<li class="{{ category_classes }}">
+    <a class="crd crd--product" href="{{ link }}">
+        <div class="crd__picture crd__picture--square">
+            {{ fn('woocommerce_subcategory_thumbnail', category) }}
+        </div>
+        <div class="crd__content">
+            <div class="crd__inner">
+                {% do action('woocommerce_shop_loop_subcategory_title', category) %}
+            </div>
+        </div>
+        <div class="crd__footer">
+            <div class="theme-button">{{ __('See category', 'wp-lemon-child') }}</div>
+        </div>
+    </a>
+</li>

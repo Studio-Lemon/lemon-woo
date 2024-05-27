@@ -119,7 +119,8 @@ add_filter('wc_get_template_part', function ($template, $slug, $name) {
 
 add_filter('wc_get_template', function ($template, $template_name, $args, $template_path, $default_path) {
 
-   $my_path = Plugin::get_path() . '/woocommerce/' . $template_name;
+   $file_path = Plugin::get_path() . '/woocommerce/' . $template_name;
+   $file_path = str_replace('_', '-', $file_path);
 
-   return file_exists($my_path) ? $my_path : $template;
+   return file_exists($file_path) ? $file_path : $template;
 }, 10, 5);
