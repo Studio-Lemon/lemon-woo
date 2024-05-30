@@ -7,14 +7,11 @@ use Timber\Timber;
 add_filter(
    'timber/locations',
    function ($paths) {
-
-      // get current plugin path
       $plugin_path = Plugin::get_path();
-
-      $paths[] = [$plugin_path . '/resources/views'];
-
+      array_splice($paths['__main__'], 3, 0, $plugin_path . '/resources/views');
       return $paths;
-   }
+   },
+   11
 );
 
 add_filter('timber/context', function ($context) {
