@@ -18,6 +18,9 @@ class Product extends Post
     */
    public $product = null;
 
+
+   private $image_id = null;
+
    /**
     * Product constructor.
     *
@@ -186,5 +189,34 @@ class Product extends Post
    public function get_price_html()
    {
       return $this->product->get_price_html();
+   }
+
+
+   public function get_loop_columns()
+   {
+      return wc_get_loop_prop('columns');
+   }
+
+   public function product_image_id()
+   {
+      if (null !== $this->image_id) {
+         return $this->image_id;
+      }
+
+      if ($this->product->get_image_id()) {
+         $image = $this->product->get_image_id();
+      } elseif ($this->product->get_parent_id()) {
+         $parent_product = wc_get_product($this->product->get_parent_id());
+         if ($parent_product) {
+            $image = $parent_product->get_image_id();
+         }
+      }
+
+      if (!$image) {
+         $image = get_option('woocommerce_placeholder_image', 0);
+      }
+
+      $this->image_id = $image;
+      return $image;
    }
 }

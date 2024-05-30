@@ -1,0 +1,27 @@
+.crd--product {
+	.crd {
+		&__title {
+			font-size: 1.25rem !important;
+		}
+
+		&__picture {
+			img {
+				height: 100% !important;
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.price {
+		color: $base-color !important;
+	}
+
+	.add_to_cart_button {
+		width: 100%;
+		font-size: 1rem !important;
+		color: $white !important;
+		text-align: center;
+		background-color: $base-color !important;
+		border-radius: 0 !important;
+	}
+}
