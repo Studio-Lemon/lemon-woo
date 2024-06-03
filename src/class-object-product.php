@@ -219,4 +219,11 @@ class Product extends Post
       $this->image_id = $image;
       return $image;
    }
+
+   public function get_related_products()
+   {
+      $related_limit = wc_get_loop_prop('columns');
+      $related_ids = wc_get_related_products($this->ID, $related_limit);
+      return Timber::get_posts($related_ids);
+   }
 }
