@@ -14,15 +14,15 @@
 
 	.price {
 		font-size: 1.25rem !important;
-		color: $base-color !important;
+		color: var(--base-color) !important;
 	}
 
 	.add_to_cart_button {
 		width: 100%;
 		font-size: 1rem !important;
-		color: $white !important;
+		color: white !important;
 		text-align: center;
-		background-color: $base-color !important;
+		background-color: var(--base-color) !important;
 		border-radius: 0 !important;
 	}
 }
