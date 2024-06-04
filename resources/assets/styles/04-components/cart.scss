@@ -56,7 +56,7 @@
 		}
 
 		&[data-count="0"] {
-			background-color: black;
+			background-color: var(--lemon-woo-count-inactive, var(--main-color));
 		}
 
 		&.success {
