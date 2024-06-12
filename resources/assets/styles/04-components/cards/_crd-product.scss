@@ -22,7 +22,7 @@
 		font-size: 1rem !important;
 		color: white !important;
 		text-align: center;
-		background-color: var(--base-color) !important;
+		background-color: var(--main-color, var(--base-color)) !important;
 		border-radius: 0 !important;
 	}
 }

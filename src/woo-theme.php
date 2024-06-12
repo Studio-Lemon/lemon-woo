@@ -6,8 +6,12 @@ use Timber\Timber;
 
 function add_cart()
 {
-   $context = Timber::context();
-   Timber::render('components/cart.twig', $context);
+    if (!class_exists('WooCommerce')) {
+        return false;
+    }
+
+    $context = Timber::context();
+    Timber::render('components/cart.twig', $context);
 }
 
-add_filter('wp-lemon/action/menu-toggle/before', __NAMESPACE__ . '\\add_cart');
+add_filter('wp-lemon/action/menu-toggle/before', __NAMESPACE__.'\\add_cart');
