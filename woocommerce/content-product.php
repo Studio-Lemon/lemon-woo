@@ -20,19 +20,22 @@ use Timber\Factory\PostFactory;
 use Timber\Helper;
 use Timber\Timber;
 
-defined('ABSPATH') || exit;
+defined( 'ABSPATH' ) || exit;
 
 global $product;
 
 // Ensure visibility.
-if (empty($product) || !$product->is_visible()) {
-   return;
+if ( empty( $product ) || ! $product->is_visible() ) {
+	return;
 }
 
 static $postFactory;
-$postFactory = $postFactory ?: new PostFactory();
-$timber_product = $postFactory->from($product->get_id());
+$postFactory    = $postFactory ?: new PostFactory();
+$timber_product = $postFactory->from( $product->get_id() );
 
-Timber::render('components/cards/crd-product.twig', [
-   'product' => $timber_product
-]);
+Timber::render(
+	'components/cards/crd-product.twig',
+	array(
+		'product' => $timber_product,
+	)
+);

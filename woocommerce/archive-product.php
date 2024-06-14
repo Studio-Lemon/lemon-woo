@@ -17,18 +17,18 @@ use Timber\Timber;
 
 $context = Timber::context();
 
-$products = Timber::get_posts();
+$products            = Timber::get_posts();
 $context['products'] = $products;
 
-if (is_product_category()) {
-   $queried_object      = get_queried_object();
-   $term_id             = $queried_object->term_id;
-   $context['category'] = get_term($term_id, 'product_cat');
-   $context['title']    = single_term_title('', false);
+if ( is_product_category() ) {
+	$queried_object      = get_queried_object();
+	$term_id             = $queried_object->term_id;
+	$context['category'] = get_term( $term_id, 'product_cat' );
+	$context['title']    = single_term_title( '', false );
 
-   if ($queried_object && !empty($term->description)) {
-      $context['show_description'] = true;
-   }
+	if ( $queried_object && ! empty( $term->description ) ) {
+		$context['show_description'] = true;
+	}
 }
 
-Timber::render('templates/woocommerce-archive.twig', $context);
+Timber::render( 'templates/woocommerce-archive.twig', $context );

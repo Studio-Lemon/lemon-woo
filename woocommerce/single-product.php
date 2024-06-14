@@ -17,6 +17,6 @@ use Timber\Timber;
 
 $context = Timber::context();
 
-$context['share_context'] = get_share_platforms(get_the_ID());
+$context['share_context'] = get_share_platforms( get_the_ID() );
 
-Timber::render('templates/single-product.twig', $context);
+Timber::render( 'templates/single-product.twig', $context );

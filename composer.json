@@ -1,0 +1,29 @@
+{
+   "name": "studiolemon/lemon-woo",
+   "description": "Plugin for Lemon WooCommerce",
+   "type":"wordpress-plugin",
+   "license": "MIT",
+   "require-dev": {
+     "10up/phpcs-composer": "^3.0"
+   },
+   "extra": {
+     "installer-paths": {
+       "vendor/automattic/wordbless/": [
+         "automattic/wordbless"
+       ]
+     },
+     "wordpress-install-dir": "wordpress"
+   },
+   "config": {
+     "allow-plugins": {
+       "roots/wordpress-core-installer": true,
+       "composer/installers": true,
+       "dealerdirect/phpcodesniffer-composer-installer": true
+     }
+   },
+   "scripts": {
+     "cs": "@php ./vendor/bin/phpcs",
+     "cs:fix": "@php ./vendor/bin/phpcbf"
+   }
+ }
+ 
