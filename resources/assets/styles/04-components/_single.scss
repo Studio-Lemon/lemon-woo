@@ -15,9 +15,11 @@
 	gap: 10px;
 }
 
-.price {
-	display: block;
-	margin-bottom: 1rem;
+.single {
+	.price {
+		display: block;
+		margin-bottom: 1rem;
+	}
 }
 
 .woocommerce-tabs ul.tabs {
