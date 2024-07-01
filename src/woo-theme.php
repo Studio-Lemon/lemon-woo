@@ -11,6 +11,9 @@ function add_cart()
 	}
 
 	$context = Timber::context();
+
+	$context['show_account'] = apply_filters('lemon-woo/filter/show-account', true);
+
 	Timber::render('components/cart.twig', $context);
 }
 
@@ -27,9 +30,8 @@ add_filter('wp-lemon/action/menu-toggle/before', __NAMESPACE__ . '\\add_cart');
 function add_archive($archive_pages, $post_id, $item, $classes)
 {
 	if (!class_exists('WooCommerce')) {
-		return false;
+		return;
 	}
-
 	if ($post_id == wc_get_page_id('shop')) {
 		$archive_pages = array('product');
 	}
@@ -37,3 +39,7 @@ function add_archive($archive_pages, $post_id, $item, $classes)
 	return $archive_pages;
 }
 add_filter('wp-lemon/filter/navwalker/archive-pages', __NAMESPACE__ . '\\add_archive', 10, 4);
+
+
+
+add_filter('lemon-woo/filter/show-account', '__return_false');

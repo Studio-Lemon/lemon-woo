@@ -1,21 +1,24 @@
 <?php
 
 /**
- * Plugin Name:     wp-lemon x WooCommerce
- * Plugin URI:      https://wp-lemon.nl
- * Description:     Additional functionality for WooCommerce to wp-lemon
- * Author:          Erik van der Bas
- * Author URI:      https://wp-lemon.nl
- * Text Domain:     lemon-woo
- * Domain Path:     /languages
- * Version:         1.5.0
+ * Plugin Name:     			wp-lemon x WooCommerce
+ * Plugin URI:      			https://wp-lemon.nl
+ * Description:     			Additional functionality for WooCommerce to wp-lemon
+ * Author:          			Erik van der Bas
+ * Author URI:      			https://wp-lemon.nl
+ * Text Domain:     			lemon-woo
+ * Domain Path:     			/languages
+ * Version:         			1.6.0
+ * Requires Plugins:    	woocommerce
+ * WC requires at least: 	8.6
+ * WC tested up to:      	9.0
  */
 
 namespace WP_Lemon\Plugin\Lemon_Woo;
 
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
-define('LEMON_WOO_VERSION', '1.5.0');
+define('LEMON_WOO_VERSION', '1.6.0');
 
 require 'plugin-update-checker/plugin-update-checker.php';
 
