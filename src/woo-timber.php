@@ -12,7 +12,7 @@ add_filter(
 	'timber/locations',
 	function ($paths) {
 		$plugin_path = Plugin::get_path();
-		array_splice($paths['__main__'], 3, 0, $plugin_path . '/resources/views');
+		array_splice($paths['__main__'], 1, 0, $plugin_path . '/resources/views');
 
 		return $paths;
 	},
