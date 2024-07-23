@@ -2,11 +2,20 @@
 
 namespace WP_Lemon\Plugin\Lemon_Woo;
 
+use Automattic\WooCommerce\Utilities\FeaturesUtil;
 use Timber\Timber;
 
 
 remove_filter('woocommerce_before_main_content', 'woocommerce_output_content_wrapper');
 remove_filter('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end');
+
+
+add_action('before_woocommerce_init', function () {
+	if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+		FeaturesUtil::declare_compatibility('custom_order_tables', LEMON_WOO_FILE, true);
+	}
+});
+
 
 add_filter(
 	'timber/locations',
@@ -132,8 +141,7 @@ add_filter(
 add_filter(
 	'wc_get_template',
 	function ($template, $template_name, $args, $template_path, $default_path) {
-		$file_path = Plugin::get_path() . '/woocommerce/' . $template_name;
-		$file_path = str_replace('_', '-', $file_path);
+		$file_path = Plugin::get_path() . '/woocommerce/' . str_replace('_', '-', $template_name);
 
 		return file_exists($file_path) ? $file_path : $template;
 	},
