@@ -39,7 +39,3 @@ function add_archive($archive_pages, $post_id, $item, $classes)
 	return $archive_pages;
 }
 add_filter('wp-lemon/filter/navwalker/archive-pages', __NAMESPACE__ . '\\add_archive', 10, 4);
-
-
-
-add_filter('lemon-woo/filter/show-account', '__return_false');
