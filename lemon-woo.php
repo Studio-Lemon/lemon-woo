@@ -8,7 +8,7 @@
  * Author URI:      			https://wp-lemon.nl
  * Text Domain:     			lemon-woo
  * Domain Path:     			/languages
- * Version:         			1.8.0
+ * Version:         			1.7.0
  * Requires Plugins:    	woocommerce
  * WC requires at least: 	8.6
  * WC tested up to:      	9.0
@@ -30,7 +30,7 @@ $updateChecker = PucFactory::buildUpdateChecker(
 );
 
 $updateChecker->setBranch('main');
-$updateChecker->getVcsApi()->enableReleaseAssets();
+$updateChecker->getVcsApi()->enableReleaseAssets('/lemon-woo.zip/i', 0);
 $updateChecker->addFilter(
 	'first_check_time',
 	function ($unusedTimestamp) {
