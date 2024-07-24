@@ -16,3 +16,11 @@ add_action('init', function () {
 	remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
 	add_action('wp-lemon/action/entry/content/after', 'woocommerce_output_related_products');
 });
+
+
+add_filter('woocommerce_loop_add_to_cart_args', function ($args) {
+
+	$args['class'] .= ' crd__btn';
+
+	return $args;
+});

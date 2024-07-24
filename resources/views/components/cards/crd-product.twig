@@ -10,25 +10,32 @@
         'col-lg-' ~ breakpoint_lg
     ]|apply_filters('wp-lemon/plugin/lemon-woo/filter/cards/product/classes')
 %}
+{% set tag = 'div' %}
 
-<li class="{{ classes|join(' ') }}">
-    <div {{ fn('wc_product_class', 'crd crd--product ' ~ additional_class, post) }}>
-        <a class="crd__picture-link" href="{{ product.link }}">
-            {{
-                media.picture(
-                    product.product_image_id,
-                    'crd__picture crd__picture--square',
-                    null,
-                    'large'
-                )
-            }}
-        </a>
-        <div class="crd__content" href="{{ product.link }}">
-            <div class="crd__inner">
-                <div class="crd__header"><h3 class="crd__title">{{ product.title }}</h3></div>
-                {% do action('woocommerce_after_shop_loop_item_title') %}
-            </div>
+{% if li %}
+    {% set tag = 'li' %}
+{% endif %}
+
+{{ li
+    ? '<li class="' ~ (classes|join(' ')) ~ ('">'|raw)
+    : '<div class="' ~ (classes|join(' ')) ~ ('">'|raw) }}
+<div {{ fn('wc_product_class', 'crd crd--product ' ~ additional_class, post) }}>
+    <a class="crd__picture-link" href="{{ product.link }}">
+        {{
+            media.picture(
+                product.product_image_id,
+                'crd__picture crd__picture--square',
+                null,
+                'large'
+            )
+        }}
+    </a>
+    <div class="crd__content" href="{{ product.link }}">
+        <div class="crd__inner">
+            <div class="crd__header"><h3 class="crd__title">{{ product.title }}</h3></div>
+            {% do action('woocommerce_after_shop_loop_item_title') %}
         </div>
-        <div class="crd__footer">{{ fn('woocommerce_template_loop_add_to_cart') }}</div>
     </div>
-</li>
+    <div class="crd__footer">{{ fn('woocommerce_template_loop_add_to_cart') }}</div>
+</div>
+{{ li ? '</li>'|raw : '</div>'|raw }}

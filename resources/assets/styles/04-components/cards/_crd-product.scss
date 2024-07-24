@@ -18,12 +18,26 @@
 	}
 
 	.add_to_cart_button {
+		position: relative;
+		left: auto;
+		display: inline-block;
 		width: 100%;
+		padding: 0.618em 1em;
+		margin: 0;
+		overflow: visible;
 		font-size: 1rem !important;
+		font-weight: 700;
+		line-height: 1;
 		color: white !important;
 		text-align: center;
+		text-decoration: none;
+		text-shadow: none;
+		cursor: pointer;
 		background-color: var(--main-color, var(--base-color)) !important;
+		background-image: none;
+		border: 0;
 		border-radius: 0 !important;
+		box-shadow: none;
 	}
 }
 
