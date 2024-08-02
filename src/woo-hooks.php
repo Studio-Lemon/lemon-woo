@@ -24,3 +24,29 @@ add_filter('woocommerce_loop_add_to_cart_args', function ($args) {
 
 	return $args;
 });
+
+
+add_action('woocommerce_before_shop_loop', 'woocommerce_product_archive_description', 10);
+
+
+/**
+ * On some of our development machines, $_SERVER['SCRIPT_FILENAME'] gets hyjacked by the server.
+ * This causes the woocommerce_prevent_admin_access filter to always return true, which prevents
+ * us from making ajax requests in the admin-ajax.php.
+ *
+ * @see WC_Admin::prevent_admin_access()
+ * @since 5.2.3
+ * @return bool $prevent_admin_access Whether to prevent admin access and redirect to my-account page.
+ */
+add_filter(
+	'woocommerce_prevent_admin_access',
+	function ($prevent_admin_access) {
+
+		// if is ajax request, return false
+		if (defined('DOING_AJAX') && DOING_AJAX === true) {
+			return false;
+		}
+
+		return $prevent_admin_access;
+	}
+);
