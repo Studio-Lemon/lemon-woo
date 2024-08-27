@@ -14,7 +14,7 @@ add_filter('woocommerce_single_product_zoom_options', __NAMESPACE__ . '\product_
 
 add_action('init', function () {
 	remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
-	add_action('wp-lemon/action/entry/content/after', 'woocommerce_output_related_products');
+	add_action('wp-lemon/action/entry/single-product/content/after', 'woocommerce_output_related_products');
 });
 
 

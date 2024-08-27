@@ -6,6 +6,7 @@
         {% do action('woocommerce_before_main_content') %}
         {{ fn('wc_get_template_part', 'content', 'single-product') }}
         {% do action('woocommerce_after_main_content') %}
+        {% do action('wp-lemon/action/entry/single-product/content/after') %}
         {% do action('wp-lemon/action/entry/content/after') %}
         {% include 'partials/entry-footer.twig' %}
     </article>

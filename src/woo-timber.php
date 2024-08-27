@@ -124,10 +124,10 @@ function timber_set_product($post)
 add_filter(
 	'wc_get_template_part',
 	function ($template, $slug, $name) {
-		$my_path = Plugin::get_path() . '/woocommerce/' . $name;
+		$my_path = Plugin::get_path() . 'woocommerce/' . $name;
 
 		if ($slug) {
-			$my_path = Plugin::get_path() . '/woocommerce/' . $slug . '-' . $name;
+			$my_path = Plugin::get_path() . 'woocommerce/' . $slug . '-' . $name;
 		}
 
 		$my_path = $my_path . '.php';
@@ -141,10 +141,20 @@ add_filter(
 add_filter(
 	'wc_get_template',
 	function ($template, $template_name, $args, $template_path, $default_path) {
-		$file_path = Plugin::get_path() . '/woocommerce/' . str_replace('_', '-', $template_name);
+		$file_path = Plugin::get_path() . 'woocommerce/' . str_replace('_', '-', $template_name);
 
 		return file_exists($file_path) ? $file_path : $template;
 	},
 	10,
 	5
 );
+
+add_filter('template_include', function ($template) {
+	if (is_product()) {
+		return Plugin::get_path() . 'woocommerce/single-product.php';
+	} elseif (is_post_type_archive('product') || is_page(wc_get_page_id('shop'))) {
+		return Plugin::get_path() . 'woocommerce/archive-product.php';
+	}
+
+	return $template;
+}, 99);
