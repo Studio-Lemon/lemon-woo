@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The template for displaying product content within loops
+ * The template for displaying product content within loops.
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/content-product.php.
  *
@@ -17,7 +17,6 @@
  */
 
 use Timber\Factory\PostFactory;
-use Timber\Helper;
 use Timber\Timber;
 
 defined('ABSPATH') || exit;
@@ -33,10 +32,12 @@ static $postFactory;
 $postFactory    = $postFactory ?: new PostFactory();
 $timber_product = $postFactory->from($product->get_id());
 
-Timber::render(
-	'components/cards/crd-product.twig',
-	array(
-		'product' => $timber_product,
-		'li' => true
-	)
-);
+$used_by =
+
+	Timber::render(
+		'components/cards/crd-product.twig',
+		[
+			'product' => $timber_product,
+			'is_woo'  => true,
+		]
+	);

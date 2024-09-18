@@ -1,24 +1,31 @@
+{# In not used by WooCommerce, this file is rendered as a div #}
 {% import 'macros/media.twig' as media %}
 {% set breakpoint_lg = product.get_loop_columns == 3 ? '4' : '3' %}
 
-{% set classes =
-    [
-        'card-holder',
-        'card-holder--product',
-        'col-12',
-        'col-sm-6',
-        'col-lg-' ~ breakpoint_lg
-    ]|apply_filters('wp-lemon/plugin/lemon-woo/filter/cards/product/classes')
-%}
-{% set tag = 'div' %}
+{# Set the holder classes #}
+{% set holder_classes = [
+    'card-holder',
+    'card-holder--product',
+    'col-12',
+    'col-sm-6',
+    'col-lg-' ~ breakpoint_lg
+] %}
 
-{% if li %}
-    {% set tag = 'li' %}
+{# Set additional holder classes and merge them #}
+{% if extra_holder_classes %}
+    {% set holder_classes = holder_classes|merge(extra_holder_classes) %}
 {% endif %}
 
-{{ li
-    ? '<li class="' ~ (classes|join(' ')) ~ ('">'|raw)
-    : '<div class="' ~ (classes|join(' ')) ~ ('">'|raw) }}
+{# Allow to filter the holder classes #}
+{% set holder_classes =
+    holder_classes|apply_filters('wp-lemon/plugin/lemon-woo/filter/cards/product/holder-classes')
+%}
+
+{% set tag = 'div' %}
+
+{{ is_woo
+    ? '<li class="' ~ (holder_classes|join(' ')) ~ ('">'|raw)
+    : '<div class="' ~ (holder_classes|join(' ')) ~ ('">'|raw) }}
 <div {{ fn('wc_product_class', 'crd crd--product ' ~ additional_class, post) }}>
     <a class="crd__picture-link" href="{{ product.link }}">
         {{
@@ -38,4 +45,4 @@
     </div>
     <div class="crd__footer">{{ fn('woocommerce_template_loop_add_to_cart') }}</div>
 </div>
-{{ li ? '</li>'|raw : '</div>'|raw }}
+{{ is_woo ? '</li>'|raw : '</div>'|raw }}
