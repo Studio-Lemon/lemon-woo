@@ -32,12 +32,11 @@ static $postFactory;
 $postFactory    = $postFactory ?: new PostFactory();
 $timber_product = $postFactory->from($product->get_id());
 
-$used_by =
 
-	Timber::render(
-		'components/cards/crd-product.twig',
-		[
-			'product' => $timber_product,
-			'is_woo'  => true,
-		]
-	);
+Timber::render(
+	'components/cards/crd-product.twig',
+	[
+		'product' => $timber_product,
+		'is_woo'  => true,
+	]
+);

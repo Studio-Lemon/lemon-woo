@@ -21,8 +21,6 @@
     holder_classes|apply_filters('wp-lemon/plugin/lemon-woo/filter/cards/product/holder-classes')
 %}
 
-{% set tag = 'div' %}
-
 {{ is_woo
     ? '<li class="' ~ (holder_classes|join(' ')) ~ ('">'|raw)
     : '<div class="' ~ (holder_classes|join(' ')) ~ ('">'|raw) }}
