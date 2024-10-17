@@ -1,6 +1,6 @@
 {
     "name": "lemon-woo",
-    "version": "1.11.0",
+    "version": "1.12.0",
     "author": "Studio Lemon <erik@studiolemon.nl>",
     "scripts": {
         "dev": "webpack --mode development",
