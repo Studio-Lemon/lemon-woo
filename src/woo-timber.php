@@ -61,7 +61,7 @@ add_filter(
 		);
 
 		return array_merge($classmap, $custom_classmap);
-	}
+	},
 );
 
 add_filter(

@@ -12,11 +12,9 @@
  * @since 2.0.0
  */
 
-use function WP_Lemon\API\get_share_platforms;
+
 use Timber\Timber;
 
 $context = Timber::context();
 
-$context['share_context'] = get_share_platforms( get_the_ID() );
-
-Timber::render( 'templates/single-product.twig', $context );
+Timber::render('templates/single-product.twig', $context);

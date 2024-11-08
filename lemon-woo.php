@@ -41,14 +41,33 @@ $updateChecker->addFilter(
 
 require_once 'src/class-plugin.php';
 
-if (class_exists('Timber\Timber')) {
-	include_once 'src/class-object-product.php';
+/**
+ * Start loading files once wp-lemon is completely loaded.
+ *
+ * @return void
+ */
+function wp_lemon_loaded()
+{
+	// get version of wp-lemon theme
+	$theme = wp_get_theme();
+	$theme_version = $theme->get('Version');
 
-	include_once 'src/woo-timber.php';
+	if (version_compare($theme_version, '5.26.0', '<')) {
+		wp_die(
+			__('This plugin requires at least version 5.26.0 of the wp-lemon theme.', 'lemon-woo')
+		);
+		return;
+	}
 
-	include_once 'src/woo-hooks.php';
 
-	include_once 'src/woo-theme.php';
+	if (class_exists('Timber\Timber')) {
+		include_once 'src/class-object-product.php';
+		include_once 'src/woo-timber.php';
+		include_once 'src/woo-hooks.php';
+		include_once 'src/woo-theme.php';
+	}
 }
+add_action('parent_loaded', __NAMESPACE__ . '\\wp_lemon_loaded');
+
 
 new Plugin();

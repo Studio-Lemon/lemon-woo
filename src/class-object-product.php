@@ -4,6 +4,7 @@ namespace WP_Lemon\Plugin\Lemon_Woo;
 
 use Timber\Post;
 use Timber\Timber;
+use WP_Lemon\Classes\LemonPost;
 use WP_Post;
 
 /**
@@ -11,7 +12,7 @@ use WP_Post;
  *
  * @api
  */
-class Product extends Post
+class Product extends LemonPost
 {
 
 	/**
