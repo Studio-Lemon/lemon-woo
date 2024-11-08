@@ -8,7 +8,7 @@
  * Author URI:      			https://wp-lemon.nl
  * Text Domain:     			lemon-woo
  * Domain Path:     			/languages
- * Version:         			2.0.0
+ * Version:         			2.0.1
  * Requires Plugins:    	woocommerce
  * WC requires at least: 	8.6
  * WC tested up to:      	9.0
@@ -18,7 +18,7 @@ namespace WP_Lemon\Plugin\Lemon_Woo;
 
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
-define('LEMON_WOO_VERSION', '2.0.0');
+define('LEMON_WOO_VERSION', '2.0.1');
 define('LEMON_WOO_FILE', __FILE__);
 
 require 'plugin-update-checker/plugin-update-checker.php';
@@ -49,12 +49,21 @@ require_once 'src/class-plugin.php';
 function wp_lemon_loaded()
 {
 	// get version of wp-lemon theme
-	$theme = wp_get_theme();
+	$theme = wp_get_theme('wp-lemon');
+
+	if (!$theme->exists()) {
+		return;
+	}
+
 	$theme_version = $theme->get('Version');
 
 	if (version_compare($theme_version, '5.26.0', '<')) {
-		wp_die(
-			__('This plugin requires at least version 5.26.0 of the wp-lemon theme.', 'lemon-woo')
+
+
+		_doing_it_wrong(
+			'lemon-woo',
+			__('This plugin requires at least version 5.26.0 of the wp-lemon theme.', 'lemon-woo'),
+			'2.0.0'
 		);
 		return;
 	}
