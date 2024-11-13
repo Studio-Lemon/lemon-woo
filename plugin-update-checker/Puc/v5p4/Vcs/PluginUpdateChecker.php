@@ -4,9 +4,10 @@ namespace YahnisElsts\PluginUpdateChecker\v5p4\Vcs;
 
 use YahnisElsts\PluginUpdateChecker\v5p4\Plugin;
 
-if ( !class_exists(PluginUpdateChecker::class, false) ):
+if (!class_exists(PluginUpdateChecker::class, false)):
 
-	class PluginUpdateChecker extends Plugin\UpdateChecker implements BaseChecker {
+	class PluginUpdateChecker extends Plugin\UpdateChecker implements BaseChecker
+	{
 		use VcsCheckerMethods;
 
 		/**
@@ -19,7 +20,8 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 		 * @param string $optionName
 		 * @param string $muPluginFile
 		 */
-		public function __construct($api, $pluginFile, $slug = '', $checkPeriod = 12, $optionName = '', $muPluginFile = '') {
+		public function __construct($api, $pluginFile, $slug = '', $checkPeriod = 12, $optionName = '', $muPluginFile = '')
+		{
 			$this->api = $api;
 
 			parent::__construct($api->getRepositoryUrl(), $pluginFile, $slug, $checkPeriod, $optionName, $muPluginFile);
@@ -29,10 +31,11 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 			$this->api->setSlug($this->slug);
 		}
 
-		public function requestInfo($unusedParameter = null) {
+		public function requestInfo($unusedParameter = null)
+		{
 			//We have to make several remote API requests to gather all the necessary info
 			//which can take a while on slow networks.
-			if ( function_exists('set_time_limit') ) {
+			if (function_exists('set_time_limit')) {
 				@set_time_limit(60);
 			}
 
@@ -49,16 +52,16 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 
 			//Pick a branch or tag.
 			$updateSource = $api->chooseReference($this->branch);
-			if ( $updateSource ) {
+			if ($updateSource) {
 				$ref = $updateSource->name;
 				$info->version = $updateSource->version;
 				$info->last_updated = $updateSource->updated;
 				$info->download_url = $updateSource->downloadUrl;
 
-				if ( !empty($updateSource->changelog) ) {
+				if (!empty($updateSource->changelog)) {
 					$info->sections['changelog'] = $updateSource->changelog;
 				}
-				if ( isset($updateSource->downloadCount) ) {
+				if (isset($updateSource->downloadCount)) {
 					$info->downloaded = $updateSource->downloadCount;
 				}
 			} else {
@@ -68,10 +71,12 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 					new \WP_Error(
 						'puc-no-update-source',
 						'Could not retrieve version information from the repository. '
-						. 'This usually means that the update checker either can\'t connect '
-						. 'to the repository or it\'s configured incorrectly.'
+							. 'This usually means that the update checker either can\'t connect '
+							. 'to the repository or it\'s configured incorrectly.'
 					),
-					null, null, $this->slug
+					null,
+					null,
+					$this->slug
 				);
 				return null;
 			}
@@ -80,7 +85,7 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 			//are what the WordPress install will actually see after upgrading, so they take precedence over releases/tags.
 			$mainPluginFile = basename($this->pluginFile);
 			$remotePlugin = $api->getRemoteFile($mainPluginFile, $ref);
-			if ( !empty($remotePlugin) ) {
+			if (!empty($remotePlugin)) {
 				$remoteHeader = $this->package->getFileHeader($remotePlugin);
 				$this->setInfoFromHeader($remoteHeader, $info);
 			}
@@ -88,36 +93,38 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 			//Sanity check: Reject updates that don't have a version number.
 			//This can happen when we're using a branch, and we either fail to retrieve the main plugin
 			//file or the file doesn't have a "Version" header.
-			if ( empty($info->version) ) {
+			if (empty($info->version)) {
 				do_action(
 					'puc_api_error',
 					new \WP_Error(
 						'puc-no-plugin-version',
 						'Could not find the version number in the repository.'
 					),
-					null, null, $this->slug
+					null,
+					null,
+					$this->slug
 				);
 				return null;
 			}
 
 			//Try parsing readme.txt. If it's formatted according to WordPress.org standards, it will contain
 			//a lot of useful information like the required/tested WP version, changelog, and so on.
-			if ( $this->readmeTxtExistsLocally() ) {
+			if ($this->readmeTxtExistsLocally()) {
 				$this->setInfoFromRemoteReadme($ref, $info);
 			}
 
 			//The changelog might be in a separate file.
-			if ( empty($info->sections['changelog']) ) {
+			if (empty($info->sections['changelog'])) {
 				$info->sections['changelog'] = $api->getRemoteChangelog($ref, $this->package->getAbsoluteDirectoryPath());
-				if ( empty($info->sections['changelog']) ) {
-					$info->sections['changelog'] = __('There is no changelog available.', 'plugin-update-checker');
+				if (empty($info->sections['changelog'])) {
+					$info->sections['changelog'] = __('There is no changelog available.', 'lemon-woo');
 				}
 			}
 
-			if ( empty($info->last_updated) ) {
+			if (empty($info->last_updated)) {
 				//Fetch the latest commit that changed the tag or branch and use it as the "last_updated" date.
 				$latestCommitTime = $api->getLatestCommitTime($ref);
-				if ( $latestCommitTime !== null ) {
+				if ($latestCommitTime !== null) {
 					$info->last_updated = $latestCommitTime;
 				}
 			}
@@ -131,7 +138,8 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 		 *
 		 * @return bool
 		 */
-		protected function readmeTxtExistsLocally() {
+		protected function readmeTxtExistsLocally()
+		{
 			return $this->package->fileExists($this->api->getLocalReadmeName());
 		}
 
@@ -141,7 +149,8 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 		 * @param array $fileHeader
 		 * @param Plugin\PluginInfo $pluginInfo
 		 */
-		protected function setInfoFromHeader($fileHeader, $pluginInfo) {
+		protected function setInfoFromHeader($fileHeader, $pluginInfo)
+		{
 			$headerToPropertyMap = array(
 				'Version' => 'version',
 				'Name' => 'name',
@@ -158,12 +167,12 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 				'Requires PHP' => 'requires_php',
 			);
 			foreach ($headerToPropertyMap as $headerName => $property) {
-				if ( isset($fileHeader[$headerName]) && !empty($fileHeader[$headerName]) ) {
+				if (isset($fileHeader[$headerName]) && !empty($fileHeader[$headerName])) {
 					$pluginInfo->$property = $fileHeader[$headerName];
 				}
 			}
 
-			if ( !empty($fileHeader['Description']) ) {
+			if (!empty($fileHeader['Description'])) {
 				$pluginInfo->sections['description'] = $fileHeader['Description'];
 			}
 		}
@@ -174,26 +183,27 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 		 * @param string $ref GitHub tag or branch where to look for the readme.
 		 * @param Plugin\PluginInfo $pluginInfo
 		 */
-		protected function setInfoFromRemoteReadme($ref, $pluginInfo) {
+		protected function setInfoFromRemoteReadme($ref, $pluginInfo)
+		{
 			$readme = $this->api->getRemoteReadme($ref);
-			if ( empty($readme) ) {
+			if (empty($readme)) {
 				return;
 			}
 
-			if ( isset($readme['sections']) ) {
+			if (isset($readme['sections'])) {
 				$pluginInfo->sections = array_merge($pluginInfo->sections, $readme['sections']);
 			}
-			if ( !empty($readme['tested_up_to']) ) {
+			if (!empty($readme['tested_up_to'])) {
 				$pluginInfo->tested = $readme['tested_up_to'];
 			}
-			if ( !empty($readme['requires_at_least']) ) {
+			if (!empty($readme['requires_at_least'])) {
 				$pluginInfo->requires = $readme['requires_at_least'];
 			}
-			if ( !empty($readme['requires_php']) ) {
+			if (!empty($readme['requires_php'])) {
 				$pluginInfo->requires_php = $readme['requires_php'];
 			}
 
-			if ( isset($readme['upgrade_notice'], $readme['upgrade_notice'][$pluginInfo->version]) ) {
+			if (isset($readme['upgrade_notice'], $readme['upgrade_notice'][$pluginInfo->version])) {
 				$pluginInfo->upgrade_notice = $readme['upgrade_notice'][$pluginInfo->version];
 			}
 		}
@@ -207,7 +217,8 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 		 *
 		 * @param Plugin\PluginInfo $pluginInfo
 		 */
-		protected function setIconsFromLocalAssets($pluginInfo) {
+		protected function setIconsFromLocalAssets($pluginInfo)
+		{
 			$icons = $this->getLocalAssetUrls(array(
 				'icon.svg'         => 'svg',
 				'icon-256x256.png' => '2x',
@@ -216,7 +227,7 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 				'icon-128x128.jpg' => '1x',
 			));
 
-			if ( !empty($icons) ) {
+			if (!empty($icons)) {
 				//The "default" key seems to be used only as last-resort fallback in WP core (5.8/5.9),
 				//but we'll set it anyway in case some code somewhere needs it.
 				reset($icons);
@@ -236,7 +247,8 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 		 *
 		 * @param Plugin\PluginInfo $pluginInfo
 		 */
-		protected function setBannersFromLocalAssets($pluginInfo) {
+		protected function setBannersFromLocalAssets($pluginInfo)
+		{
 			$banners = $this->getLocalAssetUrls(array(
 				'banner-772x250.png' => 'high',
 				'banner-772x250.jpg' => 'high',
@@ -244,7 +256,7 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 				'banner-1544x500.jpg' => 'low',
 			));
 
-			if ( !empty($banners) ) {
+			if (!empty($banners)) {
 				$pluginInfo->banners = $banners;
 			}
 		}
@@ -253,9 +265,10 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 		 * @param array<string, string> $filesToKeys
 		 * @return array<string, string>
 		 */
-		protected function getLocalAssetUrls($filesToKeys) {
+		protected function getLocalAssetUrls($filesToKeys)
+		{
 			$assetDirectory = $this->package->getAbsoluteDirectoryPath() . DIRECTORY_SEPARATOR . 'assets';
-			if ( !is_dir($assetDirectory) ) {
+			if (!is_dir($assetDirectory)) {
 				return array();
 			}
 			$assetBaseUrl = trailingslashit(plugins_url('', $assetDirectory . '/imaginary.file'));
@@ -263,7 +276,7 @@ if ( !class_exists(PluginUpdateChecker::class, false) ):
 			$foundAssets = array();
 			foreach ($filesToKeys as $fileName => $key) {
 				$fullBannerPath = $assetDirectory . DIRECTORY_SEPARATOR . $fileName;
-				if ( !isset($icons[$key]) && is_file($fullBannerPath) ) {
+				if (!isset($icons[$key]) && is_file($fullBannerPath)) {
 					$foundAssets[$key] = $assetBaseUrl . $fileName;
 				}
 			}

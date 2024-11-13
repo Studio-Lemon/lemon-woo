@@ -4,7 +4,8 @@
     "author": "Studio Lemon <erik@studiolemon.nl>",
     "scripts": {
         "dev": "webpack --mode development",
-        "build": "webpack --mode production"
+        "build": "webpack --mode production",
+        "translate:make-pot": "wp i18n make-pot . resources/languages/lemon-woo.pot --slug=lemon-woo --exclude=node_modules,vendor"
     },
     "devDependencies": {
         "webpack": "^5.91.0",

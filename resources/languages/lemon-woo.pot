@@ -1,0 +1,56 @@
+# Copyright (C) 2024 Erik van der Bas
+# This file is distributed under the same license as the wp-lemon x WooCommerce plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: wp-lemon x WooCommerce 2.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/lemon-woo\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-11-13T10:08:17+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: lemon-woo\n"
+
+#. Plugin Name of the plugin
+#: lemon-woo.php
+msgid "wp-lemon x WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: lemon-woo.php
+msgid "https://wp-lemon.nl"
+msgstr ""
+
+#. Description of the plugin
+#: lemon-woo.php
+msgid "Additional functionality for WooCommerce to wp-lemon"
+msgstr ""
+
+#. Author of the plugin
+#: lemon-woo.php
+msgid "Erik van der Bas"
+msgstr ""
+
+#: lemon-woo.php:65
+msgid "This plugin requires at least version 5.26.0 of the wp-lemon theme."
+msgstr ""
+
+#: plugin-update-checker/Puc/v5p4/Plugin/Ui.php:237
+msgid "Unknown update checker status \"%s\""
+msgstr ""
+
+#: plugin-update-checker/Puc/v5p4/Vcs/PluginUpdateChecker.php:120
+msgid "There is no changelog available."
+msgstr ""
+
+#: resources/views/components/cards/crd-product-cat.twig:12
+msgid "See category"
+msgstr ""
+
+#: resources/views/components/cart.twig:2
+msgid "Login"
+msgstr ""

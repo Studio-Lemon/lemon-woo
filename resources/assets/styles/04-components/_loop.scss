@@ -1,5 +1,10 @@
 li.product {
 	margin-right: calc(var(--bs-gutter-x) * 0.5) !important;
 	margin-left: calc(var(--bs-gutter-x) * 0.5) !important;
-	overflow: hidden;
+
+	mark {
+		padding: 0;
+		color: inherit;
+		background-color: transparent;
+	}
 }
