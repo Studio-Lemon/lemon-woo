@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying product category thumbnails within loops
  *
@@ -15,19 +16,14 @@
  * @version 4.7.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
 
 use Timber\Timber;
-
-defined( 'ABSPATH' ) || exit;
 
 Timber::render(
 	'components/cards/crd-product-cat.twig',
 	array(
 		'category'         => $category,
-		'category_classes' => esc_attr( join( ' ', wc_get_product_cat_class( '', $category ) ) ),
-		'link'             => esc_url( get_term_link( $category, 'product_cat' ) ),
+		'link'             => esc_url(get_term_link($category, 'product_cat')),
 	)
 );
