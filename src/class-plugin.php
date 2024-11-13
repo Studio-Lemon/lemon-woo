@@ -19,6 +19,12 @@ class Plugin
 		self::$plugin_uri  = plugins_url('lemon-woo');
 
 		add_action('wp_enqueue_scripts', array(__CLASS__, 'add_assets'));
+		add_action('plugins_loaded', array(__CLASS__, 'load_textdomain'));
+	}
+
+	public static function load_textdomain()
+	{
+		load_plugin_textdomain(self::TEXT_DOMAIN, false, dirname(plugin_basename(LEMON_WOO_FILE)) . '/resources/languages');
 	}
 
 	public static function add_assets()
