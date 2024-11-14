@@ -13,6 +13,12 @@
 .wc-block-components-checkout-place-order-button {
 	color: white;
 	background-color: var(--lemon-woo-button-color, var(--main-color)) !important;
+	transition: all 0.3s ease-in-out !important;
+
+	&:hover {
+		color: white;
+		background-color: var(--lemon-woo-button-hover-color, var(--button-background-color-hover)) !important;
+	}
 }
 
 .variations_button {

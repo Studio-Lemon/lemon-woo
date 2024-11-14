@@ -1,0 +1,28 @@
+// ==========================================================================
+// Legacy Checkout page styles
+// ==========================================================================
+
+.woocommerce-checkout {
+	.button {
+		position: relative;
+		left: auto;
+		display: inline-block;
+		padding: 0.618em 1em;
+		margin: 0;
+		margin-right: 0;
+		margin-bottom: 0;
+		overflow: visible;
+		font-size: 100%;
+		font-weight: 700;
+		line-height: 1;
+		color: #515151;
+		text-decoration: none;
+		text-shadow: none;
+		cursor: pointer;
+		background-color: #e9e6ed;
+		background-image: none;
+		border: 0;
+		border-radius: 3px;
+		box-shadow: none;
+	}
+}
