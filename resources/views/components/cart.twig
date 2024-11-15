@@ -17,7 +17,9 @@
                     </span>
                 </span>
 
-                <span class="d-none d-md-inline">{{ message }}</span>
+                <span class="d-none d-md-inline">
+                    {{ message|apply_filters('lemon-woo/filter/cart/user/name', user) }}
+                </span>
             </a>
         </li>
     {% endif %}
