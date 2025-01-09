@@ -18,7 +18,7 @@ class Plugin
 		self::$plugin_path = plugin_dir_path(LEMON_WOO_FILE);
 		self::$plugin_uri  = plugins_url('lemon-woo');
 
-		add_action('wp_enqueue_scripts', array(__CLASS__, 'add_assets'));
+		add_action('wp_enqueue_scripts', array(__CLASS__, 'add_assets'), 9);
 		add_action('plugins_loaded', array(__CLASS__, 'load_textdomain'));
 	}
 
