@@ -17,7 +17,7 @@
 		color: var(--base-color) !important;
 	}
 
-	.add_to_cart_button {
+	.crd__btn {
 		position: relative;
 		left: auto;
 		display: inline-block;
@@ -28,7 +28,7 @@
 		font-size: 1rem !important;
 		font-weight: 700;
 		line-height: 1;
-		color: white !important;
+		color: var(--lemon-woo-crd-btn-color, white) !important;
 		text-align: center;
 		text-decoration: none;
 		text-shadow: none;
@@ -36,7 +36,7 @@
 		background-color: var(--main-color, var(--base-color)) !important;
 		background-image: none;
 		border: 0;
-		border-radius: 0 !important;
+		border-radius: var(--lemon-woo-crd-btn-radius, 0) !important;
 		box-shadow: none;
 	}
 }
@@ -64,7 +64,7 @@
 			font-size: 15px !important;
 		}
 
-		a.add_to_cart_button {
+		a.crd__btn {
 			font-size: 13px !important;
 		}
 	}
