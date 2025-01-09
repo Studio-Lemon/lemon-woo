@@ -10,6 +10,7 @@
         {% if fn('woocommerce_product_loop') %}
             <div class="before-shop-loop clearfix">
                 {% do action('woocommerce_before_shop_loop') %}
+                <div class="page-description">{{ post.content }}</div>
             </div>
             {{ fn('woocommerce_product_loop_start') }}
             {% if fn('wc_get_loop_prop', 'total') %}

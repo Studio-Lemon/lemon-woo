@@ -25,10 +25,6 @@ add_filter('woocommerce_loop_add_to_cart_args', function ($args) {
 	return $args;
 });
 
-
-add_action('woocommerce_before_shop_loop', 'woocommerce_product_archive_description', 10);
-
-
 /**
  * On some of our development machines, $_SERVER['SCRIPT_FILENAME'] gets hyjacked by the server.
  * This causes the woocommerce_prevent_admin_access filter to always return true, which prevents
