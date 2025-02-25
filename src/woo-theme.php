@@ -39,3 +39,21 @@ function add_archive($archive_pages, $post_id, $item, $classes)
 	return $archive_pages;
 }
 add_filter('wp-lemon/filter/navwalker/archive-pages', __NAMESPACE__ . '\\add_archive', 10, 4);
+
+
+
+
+/**
+ * Add additional css for rank math seo in product overview.
+ *
+ * @return void
+ */
+function add_rank_math_seo()
+{
+	echo '<style>
+	.post-type-product #rank_math_seo_details {
+		width: 25%;
+	}
+</style>';
+}
+add_action('admin_head', __NAMESPACE__ . '\\add_rank_math_seo');
