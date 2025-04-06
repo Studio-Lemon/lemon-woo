@@ -1,7 +1,11 @@
 {
     "name": "lemon-woo",
-    "version": "2.5.1",
+    "version": "2.5.2",
     "author": "Studio Lemon <erik@studiolemon.nl>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Studio-Lemon/lemon-woo"
+    },
     "scripts": {
         "dev": "webpack --mode development",
         "build": "webpack --mode production",

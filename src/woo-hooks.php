@@ -46,3 +46,11 @@ add_filter(
 		return $prevent_admin_access;
 	}
 );
+
+/**
+ * Disable the password change notification email.
+ *
+ * @since 2.5.2
+ * @return bool
+ */
+add_filter('woocommerce_disable_password_change_notification', '__return_true');

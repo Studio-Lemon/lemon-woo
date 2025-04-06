@@ -8,7 +8,7 @@
  * Author URI:      			https://wp-lemon.nl
  * Text Domain:     			lemon-woo
  * Domain Path:     			/languages
- * Version:         			2.5.1
+ * Version:         			2.5.2
  * Requires Plugins:    	woocommerce
  * WC requires at least: 	8.6
  * WC tested up to:      	9.0
@@ -18,7 +18,7 @@ namespace WP_Lemon\Plugin\Lemon_Woo;
 
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
-define('LEMON_WOO_VERSION', '2.5.1');
+define('LEMON_WOO_VERSION', '2.5.2');
 define('LEMON_WOO_FILE', __FILE__);
 
 require 'plugin-update-checker/plugin-update-checker.php';
