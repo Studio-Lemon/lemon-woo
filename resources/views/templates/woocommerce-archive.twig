@@ -27,5 +27,7 @@
             {% do action('woocommerce_no_products_found') %}
         {% endif %}
         {% do action('woocommerce_after_main_content') %}
+        {% do action('wp-lemon/action/entry/content/after') %}
+        {% do action('wp-lemon/action/entry/after') %}
     </div>
 {% endblock %}
