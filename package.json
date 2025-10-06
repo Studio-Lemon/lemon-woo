@@ -9,7 +9,8 @@
     "scripts": {
         "dev": "webpack --mode development",
         "build": "webpack --mode production",
-        "translate:make-pot": "wp i18n make-pot . resources/languages/lemon-woo.pot --slug=lemon-woo --exclude=node_modules,vendor"
+        "translate:make-pot": "wp i18n make-pot . resources/languages/lemon-woo.pot --slug=lemon-woo --exclude=node_modules,vendor",
+        "lint:twig": "yarn run prettier --write \"{resources/views/**/*.twig,blocks/**/*.twig}\""
     },
     "devDependencies": {
         "webpack": "^5.91.0",
@@ -17,7 +18,7 @@
     },
     "dependencies": {
         "bootstrap": "^5.3.3",
-        "@afshinhaghighat/prettier-plugin-twig-melody": "^2.0.2",
+        "@zackad/prettier-plugin-twig": "^0.16.0",
         "css-loader": "^7.1.1",
         "mini-css-extract-plugin": "^2.9.0",
         "prettier": "^3.2.5",

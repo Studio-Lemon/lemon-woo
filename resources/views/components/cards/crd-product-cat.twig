@@ -1,35 +1,29 @@
 {# Set the holder classes #}
 {% set breakpoint_lg = fn('wc_get_loop_prop', 'columns') == 3 ? '4' : '3' %}
-{% set holder_classes = [
-    'card-holder',
-    'card-holder--product-cat',
-    'col-12',
-    'col-sm-6',
-    'col-lg-' ~ breakpoint_lg
-] %}
+{% set holder_classes = ['card-holder', 'card-holder--product-cat', 'col-12', 'col-sm-6', 'col-lg-' ~ breakpoint_lg] %}
 
 {# Set additional holder classes and merge them #}
 {% if extra_holder_classes %}
-    {% set holder_classes = holder_classes|merge(extra_holder_classes) %}
+	{% set holder_classes = holder_classes|merge(extra_holder_classes) %}
 {% endif %}
 
 {# Allow to filter the holder classes #}
-{% set holder_classes =
-    holder_classes|apply_filters('wp-lemon/plugin/lemon-woo/filter/cards/product/holder-classes')
-%}
+{% set holder_classes = holder_classes|apply_filters('wp-lemon/plugin/lemon-woo/filter/cards/product/holder-classes') %}
 
 <li class="{{ holder_classes|join(' ') }}">
-    <a class="crd crd--product-cat" href="{{ link }}">
-        <div class="crd__picture crd__picture--square">
-            {{ fn('woocommerce_subcategory_thumbnail', category) }}
-        </div>
-        <div class="crd__content">
-            <div class="crd__inner">
-                {% do action('woocommerce_shop_loop_subcategory_title', category) %}
-            </div>
-        </div>
-        <div class="crd__footer">
-            <div class="theme-button">{{ __('See category', 'lemon-woo') }}</div>
-        </div>
-    </a>
+	<a class="crd crd--product-cat" href="{{ link }}">
+		<div class="crd__picture crd__picture--square">
+			{{ fn('woocommerce_subcategory_thumbnail', category) }}
+		</div>
+		<div class="crd__content">
+			<div class="crd__inner">
+				{% do action('woocommerce_shop_loop_subcategory_title', category) %}
+			</div>
+		</div>
+		<div class="crd__footer">
+			<div class="theme-button">
+				{{ __('See category', 'lemon-woo') }}
+			</div>
+		</div>
+	</a>
 </li>
