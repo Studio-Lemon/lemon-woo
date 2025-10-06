@@ -1,7 +1,5 @@
 name: Release
 
-name: Call plugin release
-
 on:
     workflow_dispatch:
 
