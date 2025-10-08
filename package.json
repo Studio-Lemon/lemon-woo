@@ -9,6 +9,7 @@
     "scripts": {
         "dev": "webpack --mode development",
         "build": "webpack --mode production",
+        "build:ci": "webpack --mode production",
         "translate:make-pot": "wp i18n make-pot . resources/languages/lemon-woo.pot --slug=lemon-woo --exclude=node_modules,vendor",
         "lint:twig": "yarn run prettier --write \"{resources/views/**/*.twig,blocks/**/*.twig}\""
     },
