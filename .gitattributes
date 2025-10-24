@@ -50,3 +50,4 @@ webpack.config.js export-ignore
 resources/assets export-ignore
 composer.json export-ignore
 composer.lock export-ignore
+build export-ignore

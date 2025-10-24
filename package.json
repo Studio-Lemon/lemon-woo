@@ -1,6 +1,6 @@
 {
     "name": "lemon-woo",
-    "version": "2.6.0",
+    "version": "2.7.0",
     "author": "Studio Lemon <erik@studiolemon.nl>",
     "repository": {
         "type": "git",
@@ -11,7 +11,8 @@
         "build": "webpack --mode production",
         "build:ci": "webpack --mode production",
         "translate:make-pot": "wp i18n make-pot . resources/languages/lemon-woo.pot --slug=lemon-woo --exclude=node_modules,vendor",
-        "lint:twig": "yarn run prettier --write \"{resources/views/**/*.twig,blocks/**/*.twig}\""
+        "lint:twig": "yarn run prettier --write \"{resources/views/**/*.twig,blocks/**/*.twig}\"",
+        "bump-version": "node build/bump-version.js"
     },
     "devDependencies": {
         "webpack": "^5.91.0",
