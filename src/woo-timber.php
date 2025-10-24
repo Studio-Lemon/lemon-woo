@@ -5,17 +5,14 @@ namespace WP_Lemon\Plugin\Lemon_Woo;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 use Timber\Timber;
 
-
 remove_filter('woocommerce_before_main_content', 'woocommerce_output_content_wrapper');
 remove_filter('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end');
-
 
 add_action('before_woocommerce_init', function () {
 	if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
 		FeaturesUtil::declare_compatibility('custom_order_tables', LEMON_WOO_FILE, true);
 	}
 });
-
 
 add_filter(
 	'timber/locations',
@@ -32,21 +29,21 @@ add_filter(
 	'timber/context',
 	function ($context) {
 
-		if (!class_exists('WooCommerce')) {
+		if (! class_exists('WooCommerce')) {
 			return $context;
 		}
-		$context['woocommerce'] = array(
-			'cart'       => array(
+		$context['woocommerce'] = [
+			'cart'       => [
 				'count' => woo_cart(),
-			),
+			],
 			'login_page' => get_permalink(wc_get_page_id('myaccount')),
-		);
+		];
 
-		$context['pages']['woocommerce'] = array(
+		$context['pages']['woocommerce'] = [
 			'myaccount' => get_permalink(wc_get_page_id('myaccount')),
 			'shop'      => get_permalink(wc_get_page_id('shop')),
 			'cart'      => get_permalink(wc_get_page_id('cart')),
-		);
+		];
 
 		return $context;
 	},
@@ -56,9 +53,21 @@ add_filter(
 add_filter(
 	'timber/post/classmap',
 	function ($classmap) {
-		$custom_classmap = array(
+		$custom_classmap = [
 			'product' => Product::class,
-		);
+		];
+
+		return array_merge($classmap, $custom_classmap);
+	},
+);
+
+
+add_filter(
+	'timber/term/classmap',
+	function ($classmap) {
+		$custom_classmap = [
+			'product_cat' => ProductCategory::class,
+		];
 
 		return array_merge($classmap, $custom_classmap);
 	},
@@ -67,11 +76,11 @@ add_filter(
 add_filter(
 	'timber/twig/functions',
 	function ($functions) {
-		$lemon_functions = array(
-			'timber_set_product' => array(
+		$lemon_functions = [
+			'timber_set_product' => [
 				'callable' => __NAMESPACE__ . '\\timber_set_product',
-			),
-		);
+			],
+		];
 
 		return array_merge($functions, $lemon_functions);
 	}
@@ -92,16 +101,16 @@ function add_to_cart_fragment($fragments)
 
 	$count = $woocommerce->cart->cart_contents_count ?? 0;
 
-	$fragments['.js-cart-count'] = Timber::compile('components/cart-count.twig', array('count' => $count));
+	$fragments['.js-cart-count'] = Timber::compile('components/cart-count.twig', ['count' => $count]);
 
 	return $fragments;
 }
 add_filter('woocommerce_add_to_cart_fragments', __NAMESPACE__ . '\\add_to_cart_fragment');
 
-function woo_cart(): false|int
+function woo_cart(): false | int
 {
 	global $woocommerce;
-	if (!isset($woocommerce->cart)) {
+	if (! isset($woocommerce->cart)) {
 	}
 
 	return $woocommerce->cart->cart_contents_count ?? 0;

@@ -18,12 +18,18 @@
 
 defined('ABSPATH') || exit;
 
+use Timber\Factory\TermFactory;
 use Timber\Timber;
+
+
+static $termFactory;
+$termFactory    = $termFactory ?: new TermFactory();
+$timber_category = $termFactory->from($category->term_id);
+
 
 Timber::render(
 	'components/cards/crd-product-cat.twig',
-	array(
-		'category'         => $category,
-		'link'             => esc_url(get_term_link($category, 'product_cat')),
-	)
+	[
+		'category' => $timber_category,
+	]
 );

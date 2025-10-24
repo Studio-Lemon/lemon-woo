@@ -15,7 +15,16 @@
 
 {{ is_woo ? '<li class="' ~ (holder_classes|join(' ')) ~ ('">'|raw) : '<div class="' ~ (holder_classes|join(' ')) ~ ('">'|raw) }}
 <div {{ fn('wc_product_class', 'crd crd--product ' ~ additional_class, post) }}>
-	<a class="crd__picture-link" href="{{ product.link }}">{{ media.picture(product.product_image_id, 'crd__picture crd__picture--square', null, 'large') }}</a>
+	<a class="crd__picture-link" href="{{ product.link }}">
+		{% set args = {
+			picture_class: 'crd__picture crd__picture--square',
+			image_size: 'large',
+			image_sizes: product.get_image_sizes,
+			focalpoint: false
+		} %}
+		{% set args = args|apply_filters('wp-lemon/filter/card/product/picture-args', image_id) %}
+		{{ media.picture(product.image_id, args) }}
+	</a>
 	<div class="crd__content" href="{{ product.link }}">
 		<div class="crd__inner">
 			<div class="crd__header">

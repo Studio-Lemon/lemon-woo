@@ -71,6 +71,7 @@ function wp_lemon_loaded()
 
 	if (class_exists('Timber\Timber')) {
 		include_once 'src/class-object-product.php';
+		include_once 'src/class-object-tax-product-category.php';
 		include_once 'src/woo-timber.php';
 		include_once 'src/woo-hooks.php';
 		include_once 'src/woo-theme.php';

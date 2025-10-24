@@ -193,13 +193,22 @@ class Product extends LemonPost
 		return $this->product->get_price_html();
 	}
 
+	public function get_image_sizes()
+	{
+		return 3 == $this->get_loop_columns() ? '(min-width: 768px) 400px,
+				(min-width: 600px) 510px,
+				400px' : '(min-width: 768px) 300px,
+				(min-width: 600px) 510px,
+				400px';
+	}
+
 
 	public function get_loop_columns()
 	{
 		return wc_get_loop_prop('columns');
 	}
 
-	public function product_image_id()
+	public function image_id()
 	{
 		if ($this->image_id !== null) {
 			return $this->image_id;

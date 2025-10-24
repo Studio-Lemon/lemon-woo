@@ -1,7 +1,7 @@
-{# Set the holder classes #}
-{% set breakpoint_lg = fn('wc_get_loop_prop', 'columns') == 3 ? '4' : '3' %}
+{% import 'macros/media.twig' as media %}
+{% set breakpoint_lg = category.get_loop_columns == 3 ? '4' : '3' %}
 {% set holder_classes = ['card-holder', 'card-holder--product-cat', 'col-12', 'col-sm-6', 'col-lg-' ~ breakpoint_lg] %}
-
+{% set link = category.link %}
 {# Set additional holder classes and merge them #}
 {% if extra_holder_classes %}
 	{% set holder_classes = holder_classes|merge(extra_holder_classes) %}
@@ -12,12 +12,17 @@
 
 <li class="{{ holder_classes|join(' ') }}">
 	<a class="crd crd--product-cat" href="{{ link }}">
-		<div class="crd__picture crd__picture--square">
-			{{ fn('woocommerce_subcategory_thumbnail', category) }}
-		</div>
+		{% set args = {
+			picture_class: 'crd__picture crd__picture--square',
+			image_size: 'large',
+			image_sizes: category.get_image_sizes,
+			focalpoint: false
+		} %}
+		{% set args = args|apply_filters('wp-lemon/filter/card/product/picture-args', category.image_id) %}
+		{{ media.picture(category.image_id, args) }}
 		<div class="crd__content">
 			<div class="crd__inner">
-				{% do action('woocommerce_shop_loop_subcategory_title', category) %}
+				{{category.title}}
 			</div>
 		</div>
 		<div class="crd__footer">
