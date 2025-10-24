@@ -71,6 +71,14 @@ class Product extends LemonPost
 		return $post;
 	}
 
+	/**
+	 * Set up the product object.
+	 *
+	 * Triggers WooCommerce shop loop action if not on a singular product page.
+	 *
+	 * @api
+	 * @return $this
+	 */
 	public function setup()
 	{
 		parent::setup();
@@ -157,21 +165,33 @@ class Product extends LemonPost
 	}
 
 	/**
-	 * Get the product's price.
+	 * Get the product's sale price.
 	 *
 	 * @api
-	 * @return string
+	 * @return string The sale price.
 	 */
 	public function sale_price()
 	{
 		return $this->product->get_sale_price();
 	}
 
+	/**
+	 * Get the product's price HTML.
+	 *
+	 * @api
+	 * @return string The formatted price HTML.
+	 */
 	public function price_html()
 	{
 		return $this->product->get_price_html();
 	}
 
+	/**
+	 * Get the product description trimmed to 10 words.
+	 *
+	 * @api
+	 * @return string The trimmed product description.
+	 */
 	public function get_description()
 	{
 		$this->product->get_description();
@@ -183,16 +203,36 @@ class Product extends LemonPost
 		return $description;
 	}
 
+	/**
+	 * Check if the product is on sale.
+	 *
+	 * @api
+	 * @return bool True if the product is on sale, false otherwise.
+	 */
 	public function is_on_sale()
 	{
 		return $this->product->is_on_sale();
 	}
 
+	/**
+	 * Get the product's price HTML.
+	 *
+	 * @api
+	 * @return string The formatted price HTML.
+	 */
 	public function get_price_html()
 	{
 		return $this->product->get_price_html();
 	}
 
+	/**
+	 * Get responsive image sizes for the product image.
+	 *
+	 * Returns different sizes based on the number of loop columns.
+	 *
+	 * @api
+	 * @return string The sizes attribute for responsive images.
+	 */
 	public function get_image_sizes()
 	{
 		return 3 == $this->get_loop_columns() ? '(min-width: 768px) 400px,
@@ -203,11 +243,26 @@ class Product extends LemonPost
 	}
 
 
+	/**
+	 * Get the number of columns in the product loop.
+	 *
+	 * @api
+	 * @return int The number of columns.
+	 */
 	public function get_loop_columns()
 	{
 		return wc_get_loop_prop('columns');
 	}
 
+	/**
+	 * Get the product image ID.
+	 *
+	 * Returns the product's image ID, or the parent product's image ID if none exists,
+	 * or the WooCommerce placeholder image ID as fallback.
+	 *
+	 * @api
+	 * @return int|null The image attachment ID.
+	 */
 	public function image_id()
 	{
 		if ($this->image_id !== null) {
@@ -221,6 +276,14 @@ class Product extends LemonPost
 		return $this->image_id;
 	}
 
+	/**
+	 * Get related products.
+	 *
+	 * Returns a collection of related products limited by the number of loop columns.
+	 *
+	 * @api
+	 * @return array|\Timber\PostCollectionInterface Array of related product posts.
+	 */
 	public function get_related_products()
 	{
 		$related_limit = wc_get_loop_prop('columns');
