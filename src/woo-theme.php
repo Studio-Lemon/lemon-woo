@@ -17,7 +17,7 @@ function add_cart()
 	Timber::render('components/cart.twig', $context);
 }
 
-add_filter('wp-lemon/action/menu-toggle/before', __NAMESPACE__ . '\\add_cart');
+add_filter('wp-lemon/action/header/menu-toggle/before', __NAMESPACE__ . '\\add_cart');
 
 /**
  * Add archive page to navwalker.
