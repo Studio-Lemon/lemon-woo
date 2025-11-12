@@ -8,7 +8,7 @@
  * Author URI:      			https://wp-lemon.nl
  * Text Domain:     			lemon-woo
  * Domain Path:     			/languages
- * Version:         			2.7.0
+ * Version:         			3.0.0
  * Requires Plugins:    	woocommerce
  * WC requires at least: 	8.6
  * WC tested up to:      	9.0
@@ -20,6 +20,7 @@ use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 define('LEMON_WOO_VERSION', '2.7.0');
 define('LEMON_WOO_FILE', __FILE__);
+define('LEMON_WOO_REQUIRED_WP_VERSION', '5.50.0');
 
 require 'plugin-update-checker/plugin-update-checker.php';
 
@@ -78,6 +79,36 @@ function wp_lemon_loaded()
 	}
 }
 add_action('parent_loaded', __NAMESPACE__ . '\\wp_lemon_loaded');
+
+
+function check_requirements($true, $hook_extra)
+{
+	// Only run during plugin updates, not core or theme updates.
+	if (empty($hook_extra['plugin']) || $hook_extra['plugin'] !== 'lemon-woo/lemon-woo.php') {
+		return $true;
+	}
+
+	$theme = wp_get_theme('wp-lemon');
+
+	if (!$theme->exists()) {
+		return new \WP_Error(
+			'theme_not_found',
+			__('This plugin requires the wp-lemon theme to be installed and active.', 'lemon-woo')
+		);
+	}
+
+	$theme_version = $theme->get('Version');
+
+	if (version_compare($theme_version, LEMON_WOO_REQUIRED_WP_VERSION, '<=')) {
+		return new \WP_Error(
+			'theme_version_incompatible',
+			sprintf(__('This plugin requires at least version %s of the wp-lemon theme.', 'lemon-woo'), LEMON_WOO_REQUIRED_WP_VERSION)
+		);
+	}
+
+	return $true;
+}
+add_filter('upgrader_pre_install', __NAMESPACE__ . '\\check_requirements', 10, 2);
 
 
 new Plugin();
