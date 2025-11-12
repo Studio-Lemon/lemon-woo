@@ -6,6 +6,12 @@ use Timber\Timber;
 
 function add_cart()
 {
+	$current_hook = current_filter();
+
+	if ($current_hook === 'wp-lemon/action/header/menu-toggle/before') {
+		remove_action('wp-lemon/action/menu-toggle/before', __NAMESPACE__ . '\\add_cart', 9);
+	}
+
 	if (!class_exists('WooCommerce')) {
 		return false;
 	}
@@ -17,7 +23,14 @@ function add_cart()
 	Timber::render('components/cart.twig', $context);
 }
 
-add_filter('wp-lemon/action/header/menu-toggle/before', __NAMESPACE__ . '\\add_cart');
+
+add_action('wp-lemon/action/header/menu-toggle/before', __NAMESPACE__ . '\\add_cart');
+
+if (!array_key_exists('wp-lemon/action/header/menu-toggle/before', $GLOBALS['wp_filter'])) {
+	add_action('wp-lemon/action/menu-toggle/before', __NAMESPACE__ . '\\add_cart');
+}
+
+
 
 /**
  * Add archive page to navwalker.
