@@ -7,7 +7,7 @@
  * Author:          			Erik van der Bas
  * Author URI:      			https://wp-lemon.nl
  * Text Domain:     			lemon-woo
- * Domain Path:     			/languages
+ * Domain Path:     			/resources/languages
  * Version:         			3.0.0
  * Requires Plugins:    	woocommerce
  * WC requires at least: 	8.6
