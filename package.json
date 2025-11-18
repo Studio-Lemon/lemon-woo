@@ -11,6 +11,7 @@
         "build": "webpack --mode production",
         "build:ci": "webpack --mode production",
         "translate:make-pot": "wp i18n make-pot . resources/languages/lemon-woo.pot --slug=lemon-woo --exclude=node_modules,vendor",
+        "translate:make-php": "wp i18n make-php resources/languages/ resources/languages",
         "lint:twig": "yarn run prettier --write \"{resources/views/**/*.twig,blocks/**/*.twig}\"",
         "bump-version": "node build/bump-version.js"
     },
