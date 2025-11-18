@@ -1,37 +1,37 @@
 {% set icon = 'close' %}
 {% set message = __('Login', 'lemon-woo') %}
+{% set aria_message = __('Login to your account', 'lemon-woo') %}
 {% if user %}
-	{% set icon = 'checkmark' %}
-	{% set message = user.meta('first_name') %}
-	{% set login_icon_class = 'success' %}
+    {% set icon = 'checkmark' %}
+    {% set message = user.meta('first_name') %}
+    {% set login_icon_class = 'success' %}
+    {% set aria_message = __('Go to your account', 'lemon-woo') %}
 {% endif %}
 
 <ul class="header-cart nav">
-	{% if show_account %}
-		<li class="nav-item">
-			<a class="nav-link" href="{{ pages.woocommerce.myaccount }}">
-				<span class="header-cart__iconholder">
-					<i class="wp-lemon-icon-person-outline large" aria-hidden="true"></i>
-					<span class="header-cart__circle {{ login_icon_class }}"><i class="wp-lemon-icon-{{ icon }}"></i></span>
-				</span>
+    {% if show_account %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ pages.woocommerce.myaccount }}" aria-label="{{ aria_message }}">
+                <span class="header-cart__iconholder">
+                    <i class="wp-lemon-icon-person-outline large" aria-hidden="true"></i>
+                    <span class="header-cart__circle {{ login_icon_class }}"><i class="wp-lemon-icon-{{ icon }}"></i></span>
+                </span>
 
-				<span class="d-none d-md-inline">{{ message|apply_filters('lemon-woo/filter/cart/user/name', user) }}</span>
-			</a>
-		</li>
-	{% endif %}
+                <span class="d-none d-md-inline">{{ message|apply_filters('lemon-woo/filter/cart/user/name', user) }}</span>
+            </a>
+        </li>
+    {% endif %}
 
-	{% if fn('is_cart') or fn('is_checkout') %}
-		<li class="nav-item"><a class="nav-link" href="{{ fn('wc_get_cart_url') }}" id="js-cart-link">{% include 'components/cart-icon.twig' %}</a></li>
-	{% else %}
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" id="js-cart-link" aria-expanded="false">
-				{% include 'components/cart-icon.twig' %}
-			</a>
-			<div class="dropdown-menu">
-				<div class="lemon-cart">
-					{{ fn('the_widget', 'WC_Widget_Cart') }}
-				</div>
-			</div>
-		</li>
-	{% endif %}
+    {% if fn('is_cart') or fn('is_checkout') %}
+        <li class="nav-item"><a class="nav-link js-cart-link" href="{{ fn('wc_get_cart_url') }}">{% include 'components/cart-icon.twig' %}</a></li>
+    {% else %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle js-cart-link" href="#" role="button" aria-haspopup="true" aria-expanded="false">{% include 'components/cart-icon.twig' %}</a>
+            <div class="dropdown-menu" aria-expanded="false">
+                <div class="lemon-cart">
+                    {{ fn('the_widget', 'WC_Widget_Cart') }}
+                </div>
+            </div>
+        </li>
+    {% endif %}
 </ul>

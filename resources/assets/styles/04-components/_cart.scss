@@ -2,7 +2,7 @@
 // header cart
 // ==========================================================================
 
-#js-cart-link {
+.js-cart-link {
 	@include media-breakpoint-up(md) {
 		min-width: 70px;
 	}
