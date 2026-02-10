@@ -31,7 +31,7 @@ $updateChecker = PucFactory::buildUpdateChecker(
 );
 
 $updateChecker->setBranch('main');
-$updateChecker->getVcsApi()->enableReleaseAssets('/lemon-woo.zip/i', 0);
+$updateChecker->getVcsApi()->enableReleaseAssets('/lemon-woo\.zip/', 2);
 $updateChecker->addFilter(
 	'first_check_time',
 	function ($unusedTimestamp) {
