@@ -11,7 +11,10 @@
 {% endif %}
 
 {# Allow to filter the holder classes #}
-{% set holder_classes = holder_classes|apply_filters('wp-lemon/plugin/lemon-woo/filter/cards/product/holder-classes') %}
+
+{% set holder_classes = holder_classes|apply_filters_deprecated('wp-lemon/plugin/lemon-woo/filter/cards/product/holder-classes', [holder_classes], '3.1.0', 'lemon-woo/filter/cards/product/holder-classes', 'Use lemon-woo/filter/cards/product/holder-classes filter instead to change the holder classes.') %}
+
+{% set holder_classes = holder_classes|apply_filters('lemon-woo/filter/cards/product/holder-classes') %}
 
 {{ is_woo ? '<li class="' ~ (holder_classes|join(' ')) ~ ('">'|raw) : '<div class="' ~ (holder_classes|join(' ')) ~ ('">'|raw) }}
 <div {{ fn('wc_product_class', 'crd crd--product ' ~ additional_class, post) }}>
@@ -22,7 +25,8 @@
 			image_sizes: product.get_image_sizes,
 			focalpoint: false
 		} %}
-		{% set args = args|apply_filters('wp-lemon/filter/card/product/picture-args', image_id) %}
+		{% set args = args|apply_filters_deprecated('wp-lemon/plugin/lemon-woo/filter/card/product/picture-args', [args, product.image_id], '3.1.0', 'lemon-woo/filter/card/product/picture-args', 'Use lemon-woo/filter/card/product/picture-args filter instead to change the picture args.') %}
+		{% set args = args|apply_filters('lemon-woo/filter/card/product/picture-args', product.image_id) %}
 		{{ media.picture(product.image_id, args) }}
 	</a>
 	<div class="crd__content" href="{{ product.link }}">
