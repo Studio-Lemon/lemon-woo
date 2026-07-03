@@ -25,7 +25,9 @@
 
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="text_domain" type="array" value="timber-starter"/>
+			<property name="text_domain" type="array">
+				<element value="lemon-woo"/>
+			</property>
 		</properties>
 	</rule>
 

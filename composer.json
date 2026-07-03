@@ -35,7 +35,7 @@
         }
     },
     "scripts": {
-        "cs": "@php ./vendor/bin/phpcs",
-        "cs:fix": "@php ./vendor/bin/phpcbf"
+        "cs": "@php ./vendor/bin/phpcs --standard=phpcs.xml.dist --extensions=php --colors -s -p -v ./",
+        "cs:fix": "@php ./vendor/bin/phpcbf --standard=phpcs.xml.dist --extensions=php --colors -s -p -v ./"
     }
 }
