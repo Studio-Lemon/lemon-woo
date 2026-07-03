@@ -22,6 +22,7 @@ use Timber\Factory\TermFactory;
 use Timber\Timber;
 
 
+static $termFactory;
 static $term_factory;
 
 if (null === $term_factory) {
