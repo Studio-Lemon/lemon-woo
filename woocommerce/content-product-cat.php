@@ -16,15 +16,15 @@
  * @version 4.7.0
  */
 
-defined('ABSPATH') || exit;
+defined( 'ABSPATH' ) || exit;
 
 use Timber\Factory\TermFactory;
 use Timber\Timber;
 
 
 static $termFactory;
-$termFactory    = $termFactory ?: new TermFactory();
-$timber_category = $termFactory->from($category->term_id);
+$termFactory     = $termFactory ?: new TermFactory();
+$timber_category = $termFactory->from( $category->term_id );
 
 
 Timber::render(

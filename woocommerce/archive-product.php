@@ -15,9 +15,9 @@
 use Timber\Timber;
 
 $context             = Timber::context();
-$shop_page           = wc_get_page_id('shop');
+$shop_page           = wc_get_page_id( 'shop' );
 $products            = Timber::get_posts();
 $context['products'] = $products;
-$context['post']     = Timber::get_post($shop_page);
+$context['post']     = Timber::get_post( $shop_page );
 
-Timber::render('templates/woocommerce-archive.twig', $context);
+Timber::render( 'templates/woocommerce-archive.twig', $context );

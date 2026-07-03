@@ -19,18 +19,18 @@
 use Timber\Factory\PostFactory;
 use Timber\Timber;
 
-defined('ABSPATH') || exit;
+defined( 'ABSPATH' ) || exit;
 
 global $product;
 
 // Ensure visibility.
-if (empty($product) || !$product->is_visible()) {
+if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 
 static $postFactory;
 $postFactory    = $postFactory ?: new PostFactory();
-$timber_product = $postFactory->from($product->get_id());
+$timber_product = $postFactory->from( $product->get_id() );
 
 
 Timber::render(
