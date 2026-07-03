@@ -12,9 +12,8 @@
  * @since 2.0.0
  */
 
-
 use Timber\Timber;
 
 $context = Timber::context();
 
-Timber::render( 'templates/single-product.twig', $context );
+Timber::render('templates/single-product.twig', $context);

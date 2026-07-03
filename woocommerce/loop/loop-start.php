@@ -16,9 +16,9 @@
  * @version     3.3.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit;
 }
 ?>
 <div>
-	<ul class="products row columns-<?php echo esc_attr( wc_get_loop_prop( 'columns' ) ); ?>">
+	<ul class="products row columns-<?php echo esc_attr(wc_get_loop_prop('columns')); ?>">

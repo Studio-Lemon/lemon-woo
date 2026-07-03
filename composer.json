@@ -4,7 +4,10 @@
     "type": "wordpress-plugin",
     "license": "MIT",
     "require-dev": {
-        "10up/phpcs-composer": "^3.0"
+        "10up/phpcs-composer": "^3.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "szepeviktor/phpstan-wordpress": "^2.0"
     },
     "repositories": [
         {
@@ -31,10 +34,12 @@
         "allow-plugins": {
             "roots/wordpress-core-installer": true,
             "composer/installers": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
         }
     },
     "scripts": {
+        "analyze": "@php ./vendor/bin/phpstan analyze",
         "cs": "@php ./vendor/bin/phpcs --standard=phpcs.xml.dist --extensions=php --colors -s -p -v ./",
         "cs:fix": "@php ./vendor/bin/phpcbf --standard=phpcs.xml.dist --extensions=php --colors -s -p -v ./"
     }

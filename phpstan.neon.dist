@@ -1,0 +1,14 @@
+parameters:
+    level: 4
+    inferPrivatePropertyTypeFromConstructor: true
+    treatPhpDocTypesAsCertain: false
+    scanDirectories:
+        - vendor
+        - woocommerce
+    paths:
+        - lemon-woo.php
+        - src/
+    ignoreErrors:
+        - '#^Instantiated class [A-Za-z0-9_\\]+ not found\.$#'
+        - '#^Call to function add_action\(\) on a separate line has no effect\.$#'
+        - '#^Call to function add_filter\(\) on a separate line has no effect\.$#'
