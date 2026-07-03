@@ -74,7 +74,10 @@ class ProductCategory extends Term {
 			return $this->category_title;
 		}
 
-		$this->category_title = woocommerce_template_loop_category_title( $this );
+		ob_start();
+		woocommerce_template_loop_category_title( $this );
+		$this->category_title = (string) ob_get_clean();
+
 		return $this->category_title;
 	}
 }

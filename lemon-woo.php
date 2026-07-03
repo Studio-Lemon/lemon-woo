@@ -33,7 +33,11 @@ $update_checker = PucFactory::buildUpdateChecker(
 );
 
 $update_checker->setBranch('main');
-$update_checker->getVcsApi()->enableReleaseAssets('/lemon-woo\.zip/', 2);
+$vcs_api = $update_checker->getVcsApi();
+
+/** @var \YahnisElsts\PluginUpdateChecker\v5p6\Vcs\GitHubApi $vcs_api */
+$vcs_api->enableReleaseAssets('/lemon-woo\.zip/', 2);
+
 $update_checker->addFilter(
 	'first_check_time',
 	function ($unused_timestamp) {

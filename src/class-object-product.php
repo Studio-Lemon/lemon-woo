@@ -12,7 +12,8 @@ use WP_Post;
  *
  * @api
  */
-class Product extends LemonPost {
+class Product extends LemonPost
+{
 
 
 	/**
@@ -39,31 +40,17 @@ class Product extends LemonPost {
 	 * ```
 	 *
 	 * @api
-	 * @param mixed $wp_post A post object or an object of class WC_Product or
-	 *                       a class that inherits from WC_Product.
-	 * @return \Timber\Post
+	 * @return static
 	 */
-	public static function build( WP_Post $wp_post ): static {
-		$post = parent::build( $wp_post );
-
-		/**
-		 * Check if the object is an instance of WC_Product or inherits from
-		 * WC_Product.
-		 *
-		 * In that case, get the post ID from the product and then let Timber
-		 * get the post through the parent
-		 * constructor of this class.
-		 */
-		if ( $wp_post instanceof \WC_Product ) {
-			$product = $post;
-		} else {
-			$product = wc_get_product( $post->ID );
-		}
+	public static function build(WP_Post $wp_post): static
+	{
+		$post = parent::build($wp_post);
+		$product = wc_get_product($post->ID);
 
 		/**
 		 * Filters the WooCommerce product
 		 */
-		$product = apply_filters( 'timber/integration/woocommerce/product', $product, $post );
+		$product = apply_filters('timber/integration/woocommerce/product', $product, $post);
 
 		$post->product = $product;
 
@@ -78,11 +65,12 @@ class Product extends LemonPost {
 	 * @api
 	 * @return $this
 	 */
-	public function setup() {
+	public function setup()
+	{
 		parent::setup();
 
-		if ( ! is_singular( 'product' ) && did_action( 'woocommerce_before_shop_loop' ) > 0 ) {
-			do_action( 'woocommerce_shop_loop' );
+		if (! is_singular('product') && did_action('woocommerce_before_shop_loop') > 0) {
+			do_action('woocommerce_shop_loop');
 		}
 
 		return $this;
@@ -94,12 +82,13 @@ class Product extends LemonPost {
 	 * @api
 	 * @return bool|\Timber\Term
 	 */
-	public function category() {
+	public function category()
+	{
 		$categories = $this->product->get_category_ids();
 
-		if ( $categories ) {
-			$category = reset( $categories );
-			$category = Timber::get_term( $category );
+		if ($categories) {
+			$category = reset($categories);
+			$category = Timber::get_term($category);
 
 			return $category;
 		}
@@ -117,10 +106,11 @@ class Product extends LemonPost {
 	 *
 	 * @return array|false
 	 */
-	public function get_product_attribute( $slug, $convert_terms = true ) {
+	public function get_product_attribute($slug, $convert_terms = true)
+	{
 		$attributes = $this->product->get_attributes();
 
-		if ( ! $attributes || empty( $attributes ) ) {
+		if (! $attributes) {
 			return false;
 		}
 
@@ -129,18 +119,18 @@ class Product extends LemonPost {
 		 */
 		$attribute = false;
 
-		foreach ( $attributes as $key => $value ) {
-			if ( "pa_{$slug}" === $key ) {
-				$attribute = $attributes[ $key ];
+		foreach ($attributes as $key => $value) {
+			if ("pa_{$slug}" === $key) {
+				$attribute = $attributes[$key];
 				break;
 			}
 		}
 
-		if ( ! $attribute ) {
+		if (! $attribute) {
 			return false;
 		}
 
-		if ( $attribute->is_taxonomy() ) {
+		if ($attribute->is_taxonomy()) {
 			$terms = wc_get_product_terms(
 				$this->product->get_id(),
 				$attribute->get_name(),
@@ -150,8 +140,8 @@ class Product extends LemonPost {
 			);
 
 			// Turn WordPress terms into instances of Timber\Term.
-			if ( $convert_terms ) {
-				$terms = Timber::get_terms( $terms );
+			if ($convert_terms) {
+				$terms = Timber::get_terms($terms);
 			}
 
 			return $terms;
@@ -166,7 +156,8 @@ class Product extends LemonPost {
 	 * @api
 	 * @return string The sale price.
 	 */
-	public function sale_price() {
+	public function sale_price()
+	{
 		return $this->product->get_sale_price();
 	}
 
@@ -176,7 +167,8 @@ class Product extends LemonPost {
 	 * @api
 	 * @return string The formatted price HTML.
 	 */
-	public function price_html() {
+	public function price_html()
+	{
 		return $this->product->get_price_html();
 	}
 
@@ -186,12 +178,13 @@ class Product extends LemonPost {
 	 * @api
 	 * @return string The trimmed product description.
 	 */
-	public function get_description() {
+	public function get_description()
+	{
 		$this->product->get_description();
 
 		// trim the description to 20 words
 		$description = $this->product->get_description();
-		$description = wp_trim_words( $description, 10 );
+		$description = wp_trim_words($description, 10);
 
 		return $description;
 	}
@@ -202,7 +195,8 @@ class Product extends LemonPost {
 	 * @api
 	 * @return bool True if the product is on sale, false otherwise.
 	 */
-	public function is_on_sale() {
+	public function is_on_sale()
+	{
 		return $this->product->is_on_sale();
 	}
 
@@ -212,7 +206,8 @@ class Product extends LemonPost {
 	 * @api
 	 * @return string The formatted price HTML.
 	 */
-	public function get_price_html() {
+	public function get_price_html()
+	{
 		return $this->product->get_price_html();
 	}
 
@@ -224,7 +219,8 @@ class Product extends LemonPost {
 	 * @api
 	 * @return string The sizes attribute for responsive images.
 	 */
-	public function get_image_sizes() {
+	public function get_image_sizes()
+	{
 		return 3 == $this->get_loop_columns() ? '(min-width: 768px) 400px,
 				(min-width: 600px) 510px,
 				400px' : '(min-width: 768px) 300px,
@@ -239,8 +235,9 @@ class Product extends LemonPost {
 	 * @api
 	 * @return int The number of columns.
 	 */
-	public function get_loop_columns() {
-		return wc_get_loop_prop( 'columns' );
+	public function get_loop_columns()
+	{
+		return wc_get_loop_prop('columns');
 	}
 
 	/**
@@ -252,14 +249,15 @@ class Product extends LemonPost {
 	 * @api
 	 * @return int|null The image attachment ID.
 	 */
-	public function image_id() {
-		if ( $this->image_id !== null ) {
+	public function image_id()
+	{
+		if ($this->image_id !== null) {
 			return $this->image_id;
 		}
 
-		$image = $this->product->get_image_id() ?: ( $this->product->get_parent_id() ? wc_get_product( $this->product->get_parent_id() )->get_image_id() : null );
+		$image = $this->product->get_image_id() ?: ($this->product->get_parent_id() ? wc_get_product($this->product->get_parent_id())->get_image_id() : null);
 
-		$this->image_id = $image ?: get_option( 'woocommerce_placeholder_image', 0 );
+		$this->image_id = $image ?: get_option('woocommerce_placeholder_image', 0);
 
 		return $this->image_id;
 	}
@@ -272,9 +270,10 @@ class Product extends LemonPost {
 	 * @api
 	 * @return array|\Timber\PostCollectionInterface Array of related product posts.
 	 */
-	public function get_related_products() {
-		$related_limit = wc_get_loop_prop( 'columns' );
-		$related_ids   = wc_get_related_products( $this->ID, $related_limit );
-		return Timber::get_posts( $related_ids );
+	public function get_related_products()
+	{
+		$related_limit = wc_get_loop_prop('columns');
+		$related_ids   = wc_get_related_products($this->ID, $related_limit);
+		return Timber::get_posts($related_ids);
 	}
 }

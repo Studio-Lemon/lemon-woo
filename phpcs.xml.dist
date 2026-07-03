@@ -15,7 +15,9 @@
 
 	<!-- Set a minimum PHP version for PHPCompatibility -->
 	<config name="testVersion" value="8.1-" />
-
+	<rule ref="Squiz.Commenting.FileComment.SpacingAfterOpen">
+    <exclude-pattern>*.php</exclude-pattern>
+	</rule>
 	<rule ref="10up-Default" />
 	<rule ref="WordPress-Core" />
 	<rule ref="WordPress-Docs" />

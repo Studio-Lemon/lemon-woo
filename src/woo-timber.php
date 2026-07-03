@@ -5,23 +5,23 @@ namespace WP_Lemon\Plugin\Lemon_Woo;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 use Timber\Timber;
 
-remove_filter( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper' );
-remove_filter( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end' );
+remove_filter('woocommerce_before_main_content', 'woocommerce_output_content_wrapper');
+remove_filter('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end');
 
 add_action(
 	'before_woocommerce_init',
 	function () {
-		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
-			FeaturesUtil::declare_compatibility( 'custom_order_tables', LEMON_WOO_FILE, true );
+		if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+			FeaturesUtil::declare_compatibility('custom_order_tables', LEMON_WOO_FILE, true);
 		}
 	}
 );
 
 add_filter(
 	'timber/locations',
-	function ( $paths ) {
+	function ($paths) {
 		$plugin_path = Plugin::get_path();
-		array_splice( $paths['__main__'], 1, 0, $plugin_path . '/resources/views' );
+		array_splice($paths['__main__'], 1, 0, $plugin_path . '/resources/views');
 
 		return $paths;
 	},
@@ -30,22 +30,22 @@ add_filter(
 
 add_filter(
 	'timber/context',
-	function ( $context ) {
+	function ($context) {
 
-		if ( ! class_exists( 'WooCommerce' ) ) {
+		if (! class_exists('WooCommerce')) {
 			return $context;
 		}
 		$context['woocommerce'] = [
 			'cart'       => [
 				'count' => woo_cart(),
 			],
-			'login_page' => get_permalink( wc_get_page_id( 'myaccount' ) ),
+			'login_page' => get_permalink(wc_get_page_id('myaccount')),
 		];
 
 		$context['pages']['woocommerce'] = [
-			'myaccount' => get_permalink( wc_get_page_id( 'myaccount' ) ),
-			'shop'      => get_permalink( wc_get_page_id( 'shop' ) ),
-			'cart'      => get_permalink( wc_get_page_id( 'cart' ) ),
+			'myaccount' => get_permalink(wc_get_page_id('myaccount')),
+			'shop'      => get_permalink(wc_get_page_id('shop')),
+			'cart'      => get_permalink(wc_get_page_id('cart')),
 		];
 
 		return $context;
@@ -55,37 +55,37 @@ add_filter(
 
 add_filter(
 	'timber/post/classmap',
-	function ( $classmap ) {
+	function ($classmap) {
 		$custom_classmap = [
 			'product' => Product::class,
 		];
 
-		return array_merge( $classmap, $custom_classmap );
+		return array_merge($classmap, $custom_classmap);
 	},
 );
 
 
 add_filter(
 	'timber/term/classmap',
-	function ( $classmap ) {
+	function ($classmap) {
 		$custom_classmap = [
 			'product_cat' => ProductCategory::class,
 		];
 
-		return array_merge( $classmap, $custom_classmap );
+		return array_merge($classmap, $custom_classmap);
 	},
 );
 
 add_filter(
 	'timber/twig/functions',
-	function ( $functions ) {
+	function ($functions) {
 		$lemon_functions = [
 			'timber_set_product' => [
 				'callable' => __NAMESPACE__ . '\\timber_set_product',
 			],
 		];
 
-		return array_merge( $functions, $lemon_functions );
+		return array_merge($functions, $lemon_functions);
 	}
 );
 
@@ -96,22 +96,25 @@ add_filter(
  *
  * @author Erik van der Bas
  *
- * @param string $fragments
+ * @param array<string, string> $fragments
+ * @return array<string, string>
  */
-function add_to_cart_fragment( $fragments ) {
+function add_to_cart_fragment($fragments)
+{
 	global $woocommerce;
 
 	$count = $woocommerce->cart->cart_contents_count ?? 0;
 
-	$fragments['.js-cart-count'] = Timber::compile( 'components/cart-count.twig', [ 'count' => $count ] );
+	$fragments['.js-cart-count'] = Timber::compile('components/cart-count.twig', ['count' => $count]);
 
 	return $fragments;
 }
-add_filter( 'woocommerce_add_to_cart_fragments', __NAMESPACE__ . '\\add_to_cart_fragment' );
+add_filter('woocommerce_add_to_cart_fragments', __NAMESPACE__ . '\\add_to_cart_fragment');
 
-function woo_cart(): false|int {
+function woo_cart(): false|int
+{
 	global $woocommerce;
-	if ( ! isset( $woocommerce->cart ) ) {
+	if (! isset($woocommerce->cart)) {
 	}
 
 	return $woocommerce->cart->cart_contents_count ?? 0;
@@ -124,24 +127,25 @@ function woo_cart(): false|int {
  *
  * @param object $post current post
  */
-function timber_set_product( $post ) {
+function timber_set_product($post)
+{
 	global $product;
 
-	$product = wc_get_product( $post->ID );
+	$product = wc_get_product($post->ID);
 }
 
 add_filter(
 	'wc_get_template_part',
-	function ( $template, $slug, $name ) {
+	function ($template, $slug, $name) {
 		$my_path = Plugin::get_path() . 'woocommerce/' . $name;
 
-		if ( $slug ) {
+		if ($slug) {
 			$my_path = Plugin::get_path() . 'woocommerce/' . $slug . '-' . $name;
 		}
 
 		$my_path = $my_path . '.php';
 
-		return file_exists( $my_path ) ? $my_path : $template;
+		return file_exists($my_path) ? $my_path : $template;
 	},
 	10,
 	3
@@ -149,10 +153,10 @@ add_filter(
 
 add_filter(
 	'wc_get_template',
-	function ( $template, $template_name, $args, $template_path, $default_path ) {
-		$file_path = Plugin::get_path() . 'woocommerce/' . str_replace( '_', '-', $template_name );
+	function ($template, $template_name, $args, $template_path, $default_path) {
+		$file_path = Plugin::get_path() . 'woocommerce/' . str_replace('_', '-', $template_name);
 
-		return file_exists( $file_path ) ? $file_path : $template;
+		return file_exists($file_path) ? $file_path : $template;
 	},
 	10,
 	5
@@ -160,10 +164,10 @@ add_filter(
 
 add_filter(
 	'template_include',
-	function ( $template ) {
-		if ( is_product() ) {
+	function ($template) {
+		if (is_product()) {
 			return Plugin::get_path() . 'woocommerce/single-product.php';
-		} elseif ( is_post_type_archive( 'product' ) || is_page( wc_get_page_id( 'shop' ) ) ) {
+		} elseif (is_post_type_archive('product') || is_page(wc_get_page_id('shop'))) {
 			return Plugin::get_path() . 'woocommerce/archive-product.php';
 		}
 

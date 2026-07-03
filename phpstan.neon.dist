@@ -3,12 +3,14 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     treatPhpDocTypesAsCertain: false
     scanDirectories:
+        - ../../themes/wp-lemon/lib
+        - ../../themes/wp-lemon/vendor
+        - ../woocommerce
+        - plugin-update-checker/Puc
         - vendor
-        - woocommerce
+    scanFiles:
+        - lemon-woo.php
+        - plugin-update-checker/load-v5p6.php
     paths:
         - lemon-woo.php
         - src/
-    ignoreErrors:
-        - '#^Instantiated class [A-Za-z0-9_\\]+ not found\.$#'
-        - '#^Call to function add_action\(\) on a separate line has no effect\.$#'
-        - '#^Call to function add_filter\(\) on a separate line has no effect\.$#'

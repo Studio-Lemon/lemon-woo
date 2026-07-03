@@ -57,7 +57,7 @@ add_filter(
 	function ($prevent_admin_access) {
 
 		// if is ajax request, return false
-		if (defined('DOING_AJAX') && DOING_AJAX === true) {
+		if (wp_doing_ajax()) {
 			return false;
 		}
 
