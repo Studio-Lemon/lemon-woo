@@ -11,4 +11,6 @@ jobs:
         uses: Studio-Lemon/workflows/.github/workflows/plugin-release.yml@main
         with:
             plugin_name: 'lemon-woo'
+            deploy_to_satispress: true
+            remote_host: packagist.studiolemon.nl
         secrets: inherit
