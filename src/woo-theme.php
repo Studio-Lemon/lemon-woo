@@ -23,7 +23,7 @@ function add_cart()
 		remove_action('wp-lemon/action/menu-toggle/before', __NAMESPACE__ . '\\add_cart', 9);
 	}
 
-	if (! class_exists('WooCommerce')) {
+	if ( ! class_exists('WooCommerce')) {
 		return;
 	}
 
@@ -38,7 +38,7 @@ function add_cart()
 
 add_action('wp-lemon/action/header/menu-toggle/before', __NAMESPACE__ . '\\add_cart');
 
-if (! array_key_exists('wp-lemon/action/header/menu-toggle/before', $GLOBALS['wp_filter'])) {
+if ( ! array_key_exists('wp-lemon/action/header/menu-toggle/before', $GLOBALS['wp_filter'])) {
 	add_action('wp-lemon/action/menu-toggle/before', __NAMESPACE__ . '\\add_cart');
 }
 
@@ -57,12 +57,12 @@ function add_archive($archive_pages, $post_id, $item, $classes)
 {
 	unset($item, $classes);
 
-	if (! class_exists('WooCommerce')) {
+	if ( ! class_exists('WooCommerce')) {
 		return $archive_pages;
 	}
 
 	if (wc_get_page_id('shop') === $post_id) {
-		$archive_pages = array('product');
+		$archive_pages = ['product'];
 	}
 
 	return $archive_pages;

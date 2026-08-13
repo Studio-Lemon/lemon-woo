@@ -60,7 +60,7 @@ function wp_lemon_loaded()
 	// get version of wp-lemon theme
 	$theme = wp_get_theme('wp-lemon');
 
-	if (! $theme->exists()) {
+	if ( ! $theme->exists()) {
 		return;
 	}
 
@@ -102,7 +102,7 @@ function check_requirements($response, $hook_extra)
 
 	$theme = wp_get_theme('wp-lemon');
 
-	if (! $theme->exists()) {
+	if ( ! $theme->exists()) {
 		return new \WP_Error(
 			'theme_not_found',
 			__('This plugin requires the wp-lemon theme to be installed and active.', 'lemon-woo')

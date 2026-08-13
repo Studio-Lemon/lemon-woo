@@ -16,12 +16,21 @@ class Product extends LemonPost
 {
 
 
+
+
 	/**
+	 * WooCommerce product instance.
+	 *
 	 * @var null|\WC_Product
 	 */
 	public $product = null;
 
 
+	/**
+	 * Cached product image ID.
+	 *
+	 * @var int|null
+	 */
 	private $image_id = null;
 
 	/**
@@ -39,18 +48,19 @@ class Product extends LemonPost
 	 * {% set product = get_post(354) %}
 	 * ```
 	 *
+	 * @param WP_Post $wp_post WordPress post object.
 	 * @api
 	 * @return static
 	 */
 	public static function build(WP_Post $wp_post): static
 	{
-		$post = parent::build($wp_post);
+		$post    = parent::build($wp_post);
 		$product = wc_get_product($post->ID);
 
 		/**
 		 * Filters the WooCommerce product
 		 */
-		$product = apply_filters('timber/integration/woocommerce/product', $product, $post);
+		$product = apply_filters('timber/integration/woocommerce/product', $product, $post); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 
 		$post->product = $product;
 
@@ -115,6 +125,8 @@ class Product extends LemonPost
 		}
 
 		/**
+		 * Current attribute being searched.
+		 *
 		 * @var \WC_Product_Attribute|false $attribute
 		 */
 		$attribute = false;
@@ -134,9 +146,9 @@ class Product extends LemonPost
 			$terms = wc_get_product_terms(
 				$this->product->get_id(),
 				$attribute->get_name(),
-				array(
+				[
 					'fields' => 'all',
-				)
+				]
 			);
 
 			// Turn WordPress terms into instances of Timber\Term.
@@ -221,7 +233,7 @@ class Product extends LemonPost
 	 */
 	public function get_image_sizes()
 	{
-		return 3 == $this->get_loop_columns() ? '(min-width: 768px) 400px,
+		return 3 === $this->get_loop_columns() ? '(min-width: 768px) 400px,
 				(min-width: 600px) 510px,
 				400px' : '(min-width: 768px) 300px,
 				(min-width: 600px) 510px,
@@ -251,13 +263,14 @@ class Product extends LemonPost
 	 */
 	public function image_id()
 	{
-		if ($this->image_id !== null) {
+		if (null !== $this->image_id) {
 			return $this->image_id;
 		}
 
-		$image = $this->product->get_image_id() ?: ($this->product->get_parent_id() ? wc_get_product($this->product->get_parent_id())->get_image_id() : null);
+		$raw_id = $this->product->get_image_id();
+		$image  = $raw_id ? $raw_id : ($this->product->get_parent_id() ? wc_get_product($this->product->get_parent_id())->get_image_id() : null);
 
-		$this->image_id = $image ?: get_option('woocommerce_placeholder_image', 0);
+		$this->image_id = $image ? $image : get_option('woocommerce_placeholder_image', 0);
 
 		return $this->image_id;
 	}

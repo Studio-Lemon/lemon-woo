@@ -96,7 +96,7 @@ add_filter(
  *
  * @author Erik van der Bas
  *
- * @param array<string, string> $fragments
+ * @param array<string, string> $fragments Cart fragments to update.
  * @return array<string, string>
  */
 function add_to_cart_fragment($fragments)
@@ -111,10 +111,16 @@ function add_to_cart_fragment($fragments)
 }
 add_filter('woocommerce_add_to_cart_fragments', __NAMESPACE__ . '\\add_to_cart_fragment');
 
+/**
+ * Get the number of items in the cart.
+ *
+ * @return false|int
+ */
 function woo_cart(): false|int
 {
 	global $woocommerce;
 	if (! isset($woocommerce->cart)) {
+		return false;
 	}
 
 	return $woocommerce->cart->cart_contents_count ?? 0;
@@ -153,7 +159,7 @@ add_filter(
 
 add_filter(
 	'wc_get_template',
-	function ($template, $template_name, $args, $template_path, $default_path) {
+	function ($template, $template_name, $args, $template_path, $default_path) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
 		$file_path = Plugin::get_path() . 'woocommerce/' . str_replace('_', '-', $template_name);
 
 		return file_exists($file_path) ? $file_path : $template;

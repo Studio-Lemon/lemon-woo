@@ -9,11 +9,22 @@ use Timber\Term;
  *
  * @api
  */
-class ProductCategory extends Term {
+class ProductCategory extends Term
+{
 
 
+	/**
+	 * Cached category image ID.
+	 *
+	 * @var int|null
+	 */
 	private $image_id = null;
 
+	/**
+	 * Cached category title.
+	 *
+	 * @var string|null
+	 */
 	private $category_title = null;
 
 	/**
@@ -24,8 +35,9 @@ class ProductCategory extends Term {
 	 * @api
 	 * @return string The sizes attribute for responsive images.
 	 */
-	public function get_image_sizes() {
-		return 3 == $this->get_loop_columns() ? '(min-width: 768px) 100w,
+	public function get_image_sizes()
+	{
+		return 3 === $this->get_loop_columns() ? '(min-width: 768px) 100w,
 				(min-width: 600px) 510px,
 				400px' : '(max-width: 575px) 100w,
   (max-width: 767px) 280px,
@@ -40,8 +52,9 @@ class ProductCategory extends Term {
 	 * @api
 	 * @return int The number of columns.
 	 */
-	public function get_loop_columns() {
-		return wc_get_loop_prop( 'columns' );
+	public function get_loop_columns()
+	{
+		return wc_get_loop_prop('columns');
 	}
 
 	/**
@@ -52,12 +65,14 @@ class ProductCategory extends Term {
 	 * @api
 	 * @return int The image attachment ID.
 	 */
-	public function image_id() {
-		if ( $this->image_id !== null ) {
+	public function image_id()
+	{
+		if (null !== $this->image_id) {
 			return $this->image_id;
 		}
 
-		$this->image_id = (int) $this->meta( 'thumbnail_id' ) ?: get_option( 'woocommerce_placeholder_image', 0 );
+		$thumbnail_id   = (int) $this->meta('thumbnail_id');
+		$this->image_id = $thumbnail_id ? $thumbnail_id : get_option('woocommerce_placeholder_image', 0);
 		return $this->image_id;
 	}
 
@@ -69,13 +84,14 @@ class ProductCategory extends Term {
 	 * @api
 	 * @return string The category title.
 	 */
-	public function title() {
-		if ( $this->category_title !== null ) {
+	public function title()
+	{
+		if (null !== $this->category_title) {
 			return $this->category_title;
 		}
 
 		ob_start();
-		woocommerce_template_loop_category_title( $this );
+		woocommerce_template_loop_category_title($this);
 		$this->category_title = (string) ob_get_clean();
 
 		return $this->category_title;
