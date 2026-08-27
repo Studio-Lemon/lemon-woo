@@ -22,9 +22,7 @@ namespace WP_Lemon\Plugin\Lemon_Woo;
 
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
-// x-release-please-start-version
-define('LEMON_WOO_VERSION', '3.0.0');
-// x-release-please-end
+define('LEMON_WOO_VERSION', '3.0.0'); // x-release-please-version
 define('LEMON_WOO_FILE', __FILE__);
 define('LEMON_WOO_REQUIRED_WP_VERSION', '5.50.0');
 
