@@ -21,6 +21,9 @@
         { "type": "revert", "section": "◀️ Revert" }
     ],
     "date-format": "%d-%m-%Y",
+    "include-component-in-tag": false,
+    "include-v-in-tag": false,
+    "include-v-in-release-name": false,
     "bootstrap-sha": "32d688adc5dce75935200a07dcdd59e226ba28fe",
     "packages": {
         ".": {
