@@ -1,5 +1,40 @@
 # Changelog
 
+## [3.1.0](https://github.com/Studio-Lemon/lemon-woo/compare/lemon-woo-v3.0.0...lemon-woo-v3.1.0) (2026-08-27)
+
+
+### ⛰️ Features
+
+* add functionality to hide paid shipping methods when free shipping is available and improve code formatting ([ae5c553](https://github.com/Studio-Lemon/lemon-woo/commit/ae5c5530126dfab0af3f672df5f07e69a4d94c70))
+* enhance code quality and functionality across multiple files with improved PHP standards and updates ([20eae2c](https://github.com/Studio-Lemon/lemon-woo/commit/20eae2c55d0b7ef39dee699c91a38f74f4a79164))
+* enhance PHPStan integration and improve code quality with new dependencies and updates ([21eb60c](https://github.com/Studio-Lemon/lemon-woo/commit/21eb60c4d4651f5f8703482aa8b269de7ad27a5c))
+
+
+### 🐛 Bug Fixes
+
+* clean up .gitattributes by removing unnecessary export-ignore entries ([72d611f](https://github.com/Studio-Lemon/lemon-woo/commit/72d611f1a1e293d5986d2f4bfedbfadde90fbfe1))
+* declare static variable for TermFactory in content-product-cat.php ([907c829](https://github.com/Studio-Lemon/lemon-woo/commit/907c8292a24f6f5ef7d2bd7c965dbf181c91fc4d))
+* update deprecated filter usage in product card templates ([f7ed12b](https://github.com/Studio-Lemon/lemon-woo/commit/f7ed12b379ac0688dc17bd9dade4d7010aeb7646))
+* update PHP CodeSniffer scripts and ruleset for proper text domain ([6deda55](https://github.com/Studio-Lemon/lemon-woo/commit/6deda55f8f721b57804e2fd071b63ef0a9ad3bf1))
+* update PHP requirement to 8.2 in readme.txt ([1796b07](https://github.com/Studio-Lemon/lemon-woo/commit/1796b07729025a2dac809ee6cfc928d292158917))
+* update release assets regex to ensure correct matching ([3838907](https://github.com/Studio-Lemon/lemon-woo/commit/3838907f0d1663071f79e79efd2744bf82a53c48))
+
+
+### 🎨 Styling
+
+* improve code formatting and adhere to PHP standards across multiple files ([402cd8c](https://github.com/Studio-Lemon/lemon-woo/commit/402cd8c54807d8d3e12f65f88cee00fcdd0fb3b4))
+
+
+### ⚙️ Miscellaneous Tasks
+
+* add changelog sections to release-please configuration ([a11481b](https://github.com/Studio-Lemon/lemon-woo/commit/a11481bbe0677368919cc1004dae99e95f89bb0e))
+* add release please ([7ccf436](https://github.com/Studio-Lemon/lemon-woo/commit/7ccf4362a21d974fa8470738e4c51f281a2f2cda))
+* linting ([ac68755](https://github.com/Studio-Lemon/lemon-woo/commit/ac6875527e5663d91be2034b803a0577e4d6022c))
+* update bootstrap SHA in release-please configuration ([be90c31](https://github.com/Studio-Lemon/lemon-woo/commit/be90c31e2cae344164d96b09334c415dc2a7cee6))
+* update release workflow to include deployment settings for SatisPress ([b23285e](https://github.com/Studio-Lemon/lemon-woo/commit/b23285ed3ea5c3815502b6b041745950eb48b6fc))
+* update release-please-action to version 5 ([e286185](https://github.com/Studio-Lemon/lemon-woo/commit/e286185d0b7b74ee6208d660aedd7c9b57579ec8))
+* update version definition format in lemon-woo.php and readme.txt ([5d06491](https://github.com/Studio-Lemon/lemon-woo/commit/5d06491fde7fb076cdd74cda721438f25b7818b5))
+
 ## [3.0.0](https://github.com/Studio-Lemon/lemon-woo/compare/2.7.0...3.0.0) (2025-11-18)
 
 ### Features
