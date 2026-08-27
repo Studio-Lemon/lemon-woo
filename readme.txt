@@ -4,7 +4,9 @@ Tags: WooCommerce, wp-lemon
 Requires at least: 6.5
 Tested up to: 6.5.2
 Requires PHP: 8.2
+<!-- x-release-please-start-version -->
 Stable tag: 3.0.0
+<!-- x-release-please-end -->
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 

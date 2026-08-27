@@ -20,3 +20,6 @@ node_modules export-ignore
 .gitattributes export-ignore
 resources/assets export-ignore
 build export-ignore
+release-please-config.json export-ignore
+.release-please-manifest.json export-ignore
+CHANGELOG.md export-ignore

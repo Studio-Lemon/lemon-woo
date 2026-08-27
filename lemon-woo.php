@@ -8,7 +8,9 @@
  * Author URI:                  https://wp-lemon.nl
  * Text Domain:                 lemon-woo
  * Domain Path:                 /resources/languages
+ * x-release-please-start-version
  * Version:                     3.0.0
+ * x-release-please-end
  * Requires Plugins:        woocommerce
  * WC requires at least:    8.6
  * WC tested up to:         9.0
@@ -20,7 +22,9 @@ namespace WP_Lemon\Plugin\Lemon_Woo;
 
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
+// x-release-please-start-version
 define('LEMON_WOO_VERSION', '3.0.0');
+// x-release-please-end
 define('LEMON_WOO_FILE', __FILE__);
 define('LEMON_WOO_REQUIRED_WP_VERSION', '5.50.0');
 
@@ -50,6 +54,8 @@ $update_checker->addFilter(
 
 require_once 'src/class-plugin.php';
 
+
+
 /**
  * Start loading files once wp-lemon is completely loaded.
  *
@@ -60,7 +66,7 @@ function wp_lemon_loaded()
 	// get version of wp-lemon theme
 	$theme = wp_get_theme('wp-lemon');
 
-	if ( ! $theme->exists()) {
+	if (! $theme->exists()) {
 		return;
 	}
 
@@ -102,7 +108,7 @@ function check_requirements($response, $hook_extra)
 
 	$theme = wp_get_theme('wp-lemon');
 
-	if ( ! $theme->exists()) {
+	if (! $theme->exists()) {
 		return new \WP_Error(
 			'theme_not_found',
 			__('This plugin requires the wp-lemon theme to be installed and active.', 'lemon-woo')
