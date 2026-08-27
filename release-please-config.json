@@ -31,7 +31,7 @@
             "changelog-path": "CHANGELOG.md",
             "extra-files": [
                 { "type": "generic", "path": "lemon-woo.php" },
-                { "type": "generic", "path": "package.json" },
+                { "type": "json", "path": "package.json", "jsonpath": "$.version" },
                 { "type": "generic", "path": "readme.txt" }
             ]
         }
