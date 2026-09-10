@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.1.1](https://github.com/Studio-Lemon/lemon-woo/compare/3.1.0...3.1.1) (2026-09-10)
+
+
+### ⚙️ Miscellaneous Tasks
+
+* add package.json to extra-files in release-please configuration ([588ed93](https://github.com/Studio-Lemon/lemon-woo/commit/588ed93e60c77625dd6554486e92460b30ece149))
+* remove bump-version script and related file ([62d8b08](https://github.com/Studio-Lemon/lemon-woo/commit/62d8b08d7c904818b389b1f3a9d5c9007cd3fda2))
+* simplify release-please job configuration by removing unnecessary steps ([91422e2](https://github.com/Studio-Lemon/lemon-woo/commit/91422e2380fce47b1dca808531b10921354a9cc6))
+* update .gitattributes to include CHANGELOG.md in export-ignore ([a9d3a6a](https://github.com/Studio-Lemon/lemon-woo/commit/a9d3a6ab30f85f24e153d20c930ce1bd0289dfff))
+* update bootstrap-sha in release-please configuration ([a2b66e9](https://github.com/Studio-Lemon/lemon-woo/commit/a2b66e975a72f7a9b1a4c9ca547d3e1bb36da645))
+* update bootstrap-sha in release-please configuration ([d72b4db](https://github.com/Studio-Lemon/lemon-woo/commit/d72b4db0125ed1d3b6a0916f1aa06381936b0e0e))
+* update package.json entry in release-please configuration to specify jsonpath for version ([f54812e](https://github.com/Studio-Lemon/lemon-woo/commit/f54812ec47faba6b2e8a21adf0c99dd20d133c5b))
+* update release type to php in release-please configuration ([58627dd](https://github.com/Studio-Lemon/lemon-woo/commit/58627dd05ef7df7833ddbfe85886cdd790a606c0))
+
 ## [3.1.0](https://github.com/Studio-Lemon/lemon-woo/compare/lemon-woo-v3.0.0...lemon-woo-v3.1.0) (2026-08-27)
 
 
