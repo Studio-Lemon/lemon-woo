@@ -20,7 +20,7 @@
 
 namespace WP_Lemon\Plugin\Lemon_Woo;
 
-use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+use YahnisElsts\PluginUpdateChecker\v6\PucFactory;
 
 define('LEMON_WOO_VERSION', '3.1.0'); // x-release-please-version
 define('LEMON_WOO_FILE', __FILE__);
@@ -37,7 +37,7 @@ $update_checker = PucFactory::buildUpdateChecker(
 $update_checker->setBranch('main');
 $vcs_api = $update_checker->getVcsApi();
 
-/** @var \YahnisElsts\PluginUpdateChecker\v5p6\Vcs\GitHubApi $vcs_api */
+/** @var \YahnisElsts\PluginUpdateChecker\v6\Vcs\GitHubApi $vcs_api */
 $vcs_api->enableReleaseAssets('/lemon-woo\.zip/', 2);
 
 $update_checker->addFilter(
